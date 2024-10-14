@@ -1,0 +1,30 @@
+# версия docker-compose
+version: '3.8'
+
+# имена и описания контейнеров, которые должны быть развёрнуты
+services:
+  # описание контейнера db
+  db:
+    image: postgres:16.1
+    restart: always
+    # volume и связанная с ним директория в контейнере
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    # адрес файла, где хранятся переменные окружения
+    environment:
+      - POSTGRES_USER=pguser
+      - POSTGRES_PASSWORD=pgpassword
+      - POSTGRES_DB=proj_db
+
+  web:
+    build: .
+    restart: always
+    volumes:
+      - ./proj/:/app
+    ports:
+     - "8000:8000"
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
