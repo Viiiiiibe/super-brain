@@ -1,0 +1,8 @@
+<!--тег чтобы наши статические файлы (css и тд) работали в этом файлике-->
+{% load static %}
+<p> хедер </p>
+<div>
+    <!--пример обращения к статике в src-->
+            <a href="{% url 'index' %}" title=""><img src="{% static 'img/logo.jpg' %}" alt="logo"
+                                                      class="img-reponsive"></a>
+</div>
