@@ -2,20 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %} {% endblock %}</title>
-    <!--тег чтобы наши статические файлы (css, img и тд) работали в этом файлике-->
     {% load static %}
-    <!--пример обращения к статике в href-->
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+
 </head>
 <body>
-<header>
+<header class="kl-header">
     {% include 'includes/header.html' %}
 </header>
 {% block content %}
 
 {% endblock %}
-<footer>
+<footer class="kl-footer">
     {% include 'includes/footer.html' %}
 </footer>
 </body>

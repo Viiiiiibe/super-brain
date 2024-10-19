@@ -1,6 +1,65 @@
-<div>
-    футер
-    <div>
-        <p>©2024 Copyright</p>
+{% load static %}
+
+<div class="kl-footer__wrapper content-wrapper">
+    <div class="kl-footer__content">
+          <div class="kl-footer__menu">
+          <div class="kl-footer__group">
+			<h3>О нас</h3>
+            <ul>
+                <li>
+                  <a href="">Отзывы</a>
+                </li>
+                <li>
+                  <a href="">Вакансии</a>
+                </li>
+                <li>
+                  <a href="">Правовая информация</a>
+                </li>
+            </ul>
+          </div>
+          <div class="kl-footer__group">
+			<h3>Учеба</h3>
+            <ul>
+                <li>
+                  <a href="">Курсы</a>
+                </li>
+                <li>
+                  <a href="">Турниры</a>
+                </li>
+                <li>
+                  <a href="#">Рейтинг</a>
+                </li>
+            </ul>
+          </div>
+          <div class="kl-footer__group">
+			<h3>Контакты</h3>
+            <ul>
+                <li>
+                  <a target="_blank" href="mailto:nikitafofilov08@gmail.com">nikitafofilov08@gmail.com</a>
+                </li>
+                <li>
+                  <a target="_blank" href="tel:79023810051">+7-902-381-00-51</a>
+                </li>
+            </ul>
+          </div>
+          <div class="kl-footer__group">
+			<h3>Чат с поддержкой</h3>
+            <ul class="kl-footer-ul__flex">
+                <li>
+                  <a href="">
+                    <img src="{% static 'img/tglogo.png' %}" alt="telegram" class="kl-footer__img" style="max-width: 54px; max-height: 54px;">
+                  </a>
+                </li>
+                <li>
+                  <a href="">
+                    <img src="{% static 'img/vklogo.png' %}" alt="vk" class="kl-footer__img">
+                  </a>
+                </li>
+            </ul>
+          </div>
+      </div>
+    </div>
+    <div class="kl-footer__legal">
+      <span>© SuperBrain, 2024</span>
     </div>
 </div>

@@ -5,6 +5,73 @@
 
 {% block content %}
 {% load static %}
-тут основная страница
+
+<main>
+<div data-aos="fade-up" data-aos-offset="120" data-aos-delay="0" data-aos-duration="800" data-aos-easing="ease-in-out" data-aos-mirror="true" data-aos-anchor-placement="top-bottom" class="aos-init aos-animate">
+  <div class="kl-rich-text--center" style="background-color:#F8F9FB;">
+        <ul class="first-block lakki-reddy-regular">
+            <li>
+                <h1><span style="color: #734D91; font-weight: bold; font-size: 60px;">Мир знаний в<br>твоем экране</span></h1>
+                <p><span style="color: #000000; font-size: 20px; font-weight: bold;">Учись, играя, и стань лучшим!</span></p>
+            </li>
+            <li>
+                <img src="{% static 'img/mainimg.png' %}">
+            </li>
+        </ul>
+  </div>
+
+    <div class="kl-rich-text--center">
+            <ul class="second-block lakki-reddy-regular" style="max-width:800px;">
+                <li style="background-color:#8D58A1;">
+                    <p><span style="color: #ffffff; font-size: 22px">Обучение как игра</span></p>
+                    <hr class="color-blocks-line">
+                    <p><span style="color: #ffffff; font-size: 20px">Уровни, очки опыта и топ игроков</span></p>
+                </li>
+                <li style="background-color:#FA8C3F;">
+                    <p><span style="color: #ffffff; font-size: 22px">Большой выбор курсов</span></p>
+                    <hr class="color-blocks-line">
+                     <p><span style="color: #ffffff; font-size: 20px">Математика, русский, логика, творческое мышление и множество другого</span></p>
+                </li>
+                <li style="background-color:#F34F69;">
+                    <p><span style="color: #ffffff; font-size: 22px">Сезонные турниры</span></p>
+                    <hr class="color-blocks-line">
+                     <p><span style="color: #ffffff; font-size: 20px">Веселые соревнования для самых крутых</span></p>
+                </li>
+                <li style="background-color:#00B5F3;">
+                    <p><span style="color: #ffffff; font-size: 22px">Лояльные цены</span></p>
+                    <hr class="color-blocks-line">
+                     <p><span style="color: #ffffff; font-size: 20px">Куча курсов по цене шоколадки</span></p>
+                </li>
+            </ul>
+  </div>
+
+    <div style="display: flex; flex-flow: column wrap; align-items: center; margin: 0 auto; max-width: 800px; align-items: flex-end;">
+        <ul class="third-block lakki-reddy-regular" style="max-width:800px;">
+            <li>
+                <img src="{% static 'img/kidimg1.png' %}">
+            </li>
+            <li>
+                <p><span style="color: #734D91; font-size: 30px; font-weight: bold;">Хочешь индивидуальный курс?</span></p>
+                <p><span style="color: #000000; font-size: 20px">Наши специалисты составят программу для только для тебя!</span></p>
+                <a href="" target="_blank" rel="noopener" class="button button--outlined labrada-regular">
+                    <span>Подобрать курс</span>
+                </a>
+            </li>
+        </ul>
+        <ul class="third-block lakki-reddy-regular" style="max-width:800px;width:100%;justify-content:space-between;">
+            <li>
+                <p><span style="color: #734D91; font-size: 30px; font-weight: bold;">Начни игру!</span></p>
+                <p><span style="color: #000000; font-size: 20px">Наши курсы уже ждут тебя!</span></p>
+                <a href="" target="_blank" rel="noopener" class="button button--outlined labrada-regular">
+                    <span>Посмотреть курсы</span>
+                </a>
+            </li>
+            <li>
+                <img src="{% static 'img/kidimg2.png' %}">
+            </li>
+        </ul>
+  </div>
+</div>
+</main>
 
 {% endblock %}
