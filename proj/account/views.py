@@ -47,3 +47,7 @@ def order_an_individual_course(request):
 
 def order_an_individual_course_done(request):
     return render(request, 'account/order_an_individual_course_done.html')
+
+
+def rating(request):
+    return render(request, 'account/rating.html')

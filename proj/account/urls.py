@@ -19,4 +19,6 @@ urlpatterns = [
     path('order_an_individual_course/', views.order_an_individual_course, name='order_an_individual_course'),
     path('order_an_individual_course/done/', views.order_an_individual_course_done,
          name='order_an_individual_course_done'),
+
+    path('rating/', views.rating, name='rating'),
 ]
