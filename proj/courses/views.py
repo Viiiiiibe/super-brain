@@ -27,3 +27,15 @@ def tournament(request, tournament_id):
 
 def tournament_problem(request, tournament_problem_id):
     return render(request, 'courses/tournament_problem.html')
+
+
+def current_courses(request):
+    return render(request, 'courses/current_courses.html')
+
+
+def completed_courses(request):
+    return render(request, 'courses/completed_courses.html')
+
+
+def personal_courses(request):
+    return render(request, 'courses/personal_courses.html')
