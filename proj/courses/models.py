@@ -1,7 +1,8 @@
 from django.db import models
 from django.contrib.auth import get_user_model
+from proj.settings import AUTH_USER_MODEL
 
-User = get_user_model()
+User = AUTH_USER_MODEL #get_user_model()
 
 
 class Category(models.Model):
@@ -43,7 +44,7 @@ class Course(models.Model):
         verbose_name_plural = 'Курсы'
 
 
-class Problem(models.Model):
+class CourseProblem(models.Model):
     course = models.ForeignKey(
         'Course',
         blank=False,
