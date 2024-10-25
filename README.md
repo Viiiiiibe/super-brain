@@ -43,7 +43,7 @@ pip install -r requirements.txt
 ``` 
 - В папке с файлом manage.py выполнить команду для миграций:
 ```console  
-python manage.py migrate
+python manage.py migrate  --settings=proj.settings_without_docker
 ```
 - В папке с файлом manage.py выполнить команду для запуска локального сервера:
 ```console  
