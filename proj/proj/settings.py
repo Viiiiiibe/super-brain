@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'courses.apps.CoursesConfig',
     'account.apps.AccountConfig',
     'about.apps.AboutConfig',
+    'blog.apps.BlogConfig',
 ]
 
 MIDDLEWARE = [
@@ -137,3 +138,11 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Путь хранения картинок на которые ссылаемся в БД
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# Основной url для управления медиафайлами
+MEDIA_URL = '/media/'
+
+AUTH_USER_MODEL = 'account.CustomUser'
+AUTHENTICATION_BACKENDS = ['account.backends.EmailBackend']
