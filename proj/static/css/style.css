@@ -407,5 +407,64 @@ color: rgba(255, 255, 255, 0.7);
   width: 700px;
   border: 6px solid black;
   padding: 50px;
+}
 
+
+.account-main {
+  list-style: none;
+  display: flex;
+  padding: 0;
+  margin-bottom: 35px;
+}
+
+.account-main li {
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.account-course-text-elements {
+    background: rgba(235, 235, 235, 1);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    padding: 6px;
+}
+
+.account-course-block-elements {
+  list-style: none;
+  display: flex;
+  padding: 0;
+  margin-bottom: 35px;
+  align-items: center;
+}
+
+.account-course-block-elements li {
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  width: 150px;
+  height: 150px;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.account-course-news-elements {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 35px;
+  align-items: center;
+}
+
+.account-course-news-elements li {
+  background: linear-gradient(90deg, #91DDF7 0%, #558191 100%);
+  border-radius: 20px;
+  text-align: start;
+  align-content: end;
+  width: 600px;
+  height: 130px;
+  margin-top:30px;
+}
+
+.account-course-news-elements li p {
+  margin-left: 15px;
 }
