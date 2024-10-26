@@ -115,15 +115,35 @@ button a:hover, .button a:hover, .button_cta a a:hover {
 .content-wrapper {
   margin: 0 auto;
   padding: 0 20px;
-  max-width: 1240px;
 }
 
 .kl-navbar {
-  height: 82px;
-  display: flex;
-  align-items: center;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  position: relative;
+  width: 100%;
+  z-index: 210;
+
+  height: 80px;
+  background-color:white;
+}
+
+.navbar-container {
+  position:fixed;
+  top: 0px;
+  left: 0px;
+  width:inherit;
+  z-index:211;
+}
+
+.main-header{
+    padding:0 50px;
+
+    position: relative;
+    background-color: rgb(255, 255, 255);
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 2px 4px;
+    z-index: 211;
+
+    display: flex;
+    align-items: center;
 }
 
 @media screen and (max-width: 920px) {
