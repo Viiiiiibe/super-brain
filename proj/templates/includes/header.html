@@ -1,36 +1,39 @@
 {% load static %}
 
-  <nav class="kl-navbar content-wrapper">
-    <a href="{% url 'index' %}">
-  <img src="{% static 'img/logo.png' %}" alt="logo" width="100%" style="max-width: 80px; max-height: 80px" class="kl-navbar__logo">
-      </a>
-    <div class="kl-navbar__content">
-      <ul class="kl-navbar__menu">
-          <li class="kl-navbar__item kl-navbar__parent">
-            <a class="kl-navbar__button labrada-regular" href="">
-              <span>Курсы</span>
+<nav class="kl-navbar content-wrapper">
+      <div class="navbar-container">
+          <div class="main-header">
+            <a href="{% url 'index' %}">
+                <img src="{% static 'img/logo.png' %}" alt="logo" width="100%" style="max-width: 80px; max-height: 80px" class="kl-navbar__logo">
             </a>
-          </li>
-          <li class="kl-navbar__item">
-            <a class="kl-navbar__button labrada-regular" href="">
-              <span>Турниры</span>
-            </a>
-            <div class="kl-navbar-submenu-wrapper">
+            <div class="kl-navbar__content">
+              <ul class="kl-navbar__menu">
+                  <li class="kl-navbar__item kl-navbar__parent">
+                    <a class="kl-navbar__button labrada-regular" href="">
+                      <span>Курсы</span>
+                    </a>
+                  </li>
+                  <li class="kl-navbar__item">
+                    <a class="kl-navbar__button labrada-regular" href="">
+                      <span>Турниры</span>
+                    </a>
+                    <div class="kl-navbar-submenu-wrapper">
+                    </div>
+                  </li>
+                  <li class="kl-navbar__item">
+                    <a class="kl-navbar__button labrada-regular" href="">
+                      <span>Рейтинг</span>
+                    </a>
+                    <div class="kl-navbar-submenu-wrapper">
+                    </div>
+                  </li>
+              </ul>
+              <div class="kl-navbar__end">
+                <a href="" target="_blank" rel="noopener" class="button button--outlined labrada-regular">
+                    <span>Войти</span>
+                </a>
+              </div>
             </div>
-          </li>
-          <li class="kl-navbar__item">
-            <a class="kl-navbar__button labrada-regular" href="">
-              <span>Рейтинг</span>
-            </a>
-            <div class="kl-navbar-submenu-wrapper">
-            </div>
-          </li>
-      </ul>
-      <div class="kl-navbar__end">
-        <a href="" target="_blank" rel="noopener" class="button button--outlined labrada-regular">
-            <span>Войти</span>
-        </a>
-      </div>
+          </div>
     </div>
-
-  </nav>
+</nav>

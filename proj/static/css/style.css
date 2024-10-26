@@ -114,16 +114,35 @@ button a:hover, .button a:hover, .button_cta a a:hover {
 
 .content-wrapper {
   margin: 0 auto;
-  padding: 0 20px;
-  max-width: 1240px;
 }
 
 .kl-navbar {
-  height: 82px;
-  display: flex;
-  align-items: center;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  position: relative;
+  width: 100%;
+  z-index: 210;
+
+  height: 80px;
+  background-color:white;
+}
+
+.navbar-container {
+  position:fixed;
+  top: 0px;
+  left: 0px;
+  width:inherit;
+  z-index:211;
+}
+
+.main-header{
+    padding:0 50px;
+
+    position: relative;
+    background-color: rgb(255, 255, 255);
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 2px 4px;
+    z-index: 211;
+
+    display: flex;
+    align-items: center;
 }
 
 @media screen and (max-width: 920px) {
@@ -230,6 +249,14 @@ button a:hover, .button a:hover, .button_cta a a:hover {
   margin-left: 25px;
 }
 
+.side-image {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 100%;
+}
+
 .kl-footer {
   background-color: #25262C;
 }
@@ -247,7 +274,7 @@ color: rgba(255, 255, 255, 0.7);
 
 .kl-footer__content {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   padding-bottom: 15px;
 }
 
@@ -299,7 +326,6 @@ color: rgba(255, 255, 255, 0.7);
   justify-content: center;
   flex-wrap: wrap;
   font-size: 0.875rem;
-  margin: -0.625rem -1.25rem;
   color: rgba(255, 255, 255, 0.7);
 }
 
@@ -319,10 +345,11 @@ color: rgba(255, 255, 255, 0.7);
 
 
 .kl-rich-text--center {
+  position: relative;
   text-align: left;
   margin: 0 auto;
   display: flex;
-  justify-content: center; /* Центрирование по горизонтали */
+  justify-content: center;
   align-items: center;
 }
 
@@ -332,6 +359,7 @@ color: rgba(255, 255, 255, 0.7);
   display: flex;
   padding: 0;
   margin-bottom: 35px;
+  z-index:1;
 }
 
 .first-block li {
@@ -373,4 +401,70 @@ color: rgba(255, 255, 255, 0.7);
 .third-block li {
   margin-left: 15px;
   margin-right: 15px;
+}
+
+.banner {
+  width: 700px;
+  border: 6px solid black;
+  padding: 50px;
+}
+
+
+.account-main {
+  list-style: none;
+  display: flex;
+  padding: 0;
+  margin-bottom: 35px;
+}
+
+.account-main li {
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.account-course-text-elements {
+    background: rgba(235, 235, 235, 1);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    padding: 6px;
+}
+
+.account-course-block-elements {
+  list-style: none;
+  display: flex;
+  padding: 0;
+  margin-bottom: 35px;
+  align-items: center;
+}
+
+.account-course-block-elements li {
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  width: 150px;
+  height: 150px;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.account-course-news-elements {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 35px;
+  align-items: center;
+}
+
+.account-course-news-elements li {
+  background: linear-gradient(90deg, #91DDF7 0%, #558191 100%);
+  border-radius: 20px;
+  text-align: start;
+  align-content: end;
+  width: 600px;
+  height: 130px;
+  margin-top:30px;
+}
+
+.account-course-news-elements li p {
+  margin-left: 15px;
 }
