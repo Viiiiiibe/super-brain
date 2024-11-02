@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>{{ course.title }}</h1>
+<!--ЕСЛИ ПОДПИСКА НЕ ДЕЙСТВУЕТ ВЫДАЕМ ТЕКСТ С УВЕДОМЛЕНИЕМ ИЗ КОНТЕКСТА-->
+{% if notification %}
+{{ notification }}
+{% endif %}
+
+<!--ЕСЛИ ПОДПИСКА НЕ ДЕЙСТВУЕТ ЭЛЕМЕНТОВ В ЦИКЛЕ ПРОСТО НЕ БУДЕТ,
+ДЕЙСТВУЕТ - ВЫВОДИТ ЗАДАЧИ ИЗ КОНТЕКСТА-->
+{% for problem in problems %}
+<li>{{ problem.number }}</li>
+{% endfor %}
+
+</body>
+</html>

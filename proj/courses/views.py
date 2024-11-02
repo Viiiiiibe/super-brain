@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 
 from courses.models import Category, Course, CourseProblem
+from datetime import date
 
 
 def index(request):
@@ -61,7 +62,24 @@ def category_courses(request, slug):
 
 
 def course(request, slug):
-    return render(request, 'courses/course.html')
+    course_obj = get_object_or_404(Course, slug=slug)
+    if not course_obj.free:
+        if (request.user.is_authenticated and request.user.end_of_subscription and
+                request.user.end_of_subscription >= date.today()):
+            problems = CourseProblem.objects.filter(course=course_obj).order_by('number')
+            notification = None
+        else:
+            problems = None
+            notification = "Курс доступен по подписке"
+    else:
+        problems = CourseProblem.objects.filter(course=course_obj).order_by('number')
+        notification = None
+    context = {
+        'course': course_obj,
+        'problems': problems,
+        'notification': notification,
+    }
+    return render(request, 'courses/course.html', context)
 
 
 def problem(request, problem_id):
