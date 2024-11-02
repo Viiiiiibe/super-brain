@@ -15,15 +15,21 @@ class CustomUser(AbstractUser):
     solved_problems = models.ManyToManyField(
         CourseProblem,
         related_name='users_who_have_solved',
-        verbose_name='Решенные задачи'
+        verbose_name='Решенные задачи',
+        blank=True,
+        null=True,
     )
     solved_personal_problems = models.ManyToManyField(
         PersonalProblem,
         related_name='users_who_have_solved',
-        verbose_name='Решенные задачи личных курсов'
+        verbose_name='Решенные задачи личных курсов',
+        blank=True,
+        null=True,
     )
     solved_tournament_problems = models.ManyToManyField(
         TournamentProblem,
         related_name='users_who_have_solved',
-        verbose_name='Решенные задачи турнира'
+        verbose_name='Решенные задачи турнира',
+        blank=True,
+        null=True,
     )
