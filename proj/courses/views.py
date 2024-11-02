@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 from courses.models import Category, Course, CourseProblem
 
@@ -51,7 +51,13 @@ def all_courses(request):
 
 
 def category_courses(request, slug):
-    return render(request, 'courses/category_courses.html')
+    category = get_object_or_404(Category, slug=slug)
+    courses = Course.objects.filter(category=category).order_by('title')
+    context = {
+        'category': category,
+        'courses': courses,
+    }
+    return render(request, 'courses/category_courses.html', context)
 
 
 def course(request, slug):
