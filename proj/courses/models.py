@@ -13,8 +13,8 @@ class Category(models.Model):
         return f'{self.title}'
 
     class Meta:
-        verbose_name = 'Категория задач'
-        verbose_name_plural = 'Категории задач'
+        verbose_name = 'Категория курсов'
+        verbose_name_plural = 'Категории курсов'
 
 
 class Course(models.Model):
