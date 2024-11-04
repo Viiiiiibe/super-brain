@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}
+Вход
+{% endblock %}
+
+{% block content %}
+{% load static %}
+
+<main>
+<div class="auth-container" style="margin-top: 30px;">
+   <div class="auth-container__content">
+      <div class="auth-container__body">
+         <div class="auth-form">
+            <p class="lakki-reddy-regular" style="text-align: center; font-size: 45px; color: rgba(115, 77, 145, 1);">Вход</p>
+            <form>
+               <div class="auth-form auth-form_unset-top">
+                  <div class="form-input form-input_size-lg">
+                         <input aria-invalid="false" name="username" placeholder="Ваш никнейм" class="form-input__field" type="text"value="">
+                  </div>
+                  <div class="form-input form-input_size-lg">
+                         <input aria-invalid="false" name="password" placeholder="Ваш пароль" type="password" class="form-input__field" value="">
+                  </div>
+                  <button class="button button--outlined labrada-regular" tabindex="0" type="submit">
+                     <span>Войти</span>
+                  </button>
+               </div>
+            </form>
+             <p>Забыли пароль? <a href="{% url 'account:password_reset' %}">Восстановить</a> <br>
+                 У вас еще нет аккаунта? <a href="{% url 'account:signup' %}">Регистрация</a></p>
+         </div>
+      </div>
+   </div>
+</div>
+</main>
+{% endblock %}
