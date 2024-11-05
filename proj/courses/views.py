@@ -1,7 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 
-from courses.models import Category, Course, CourseProblem
+from courses.models import Category, Course, CourseProblem, PersonalCourse
 from datetime import date
+from django.contrib.auth.decorators import login_required
 
 
 def index(request):
@@ -102,5 +103,11 @@ def completed_courses(request):
     return render(request, 'courses/completed_courses.html')
 
 
+@login_required
 def personal_courses(request):
-    return render(request, 'courses/personal_courses.html')
+    user = request.user
+    courses = PersonalCourse.objects.filter(user=user).order_by('title')
+    context = {
+        'courses': courses,
+    }
+    return render(request, 'courses/personal_courses.html', context)
