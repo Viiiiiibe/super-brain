@@ -1,6 +1,5 @@
-from django.shortcuts import render, get_object_or_404
-
-from courses.models import Category, Course, CourseProblem, PersonalCourse
+from django.shortcuts import render, get_object_or_404, redirect
+from courses.models import Category, Course, CourseProblem, PersonalCourse, PersonalProblem
 from datetime import date
 from django.contrib.auth.decorators import login_required
 
@@ -111,3 +110,18 @@ def personal_courses(request):
         'courses': courses,
     }
     return render(request, 'courses/personal_courses.html', context)
+
+
+@login_required
+def personal_course(request, slug):
+    user = request.user
+    course_obj = get_object_or_404(PersonalCourse, slug=slug)
+    if user != course_obj.user:
+        return redirect('personal_courses', )
+    else:
+        problems = PersonalProblem.objects.filter(course=course_obj).order_by('number')
+    context = {
+        'course': course_obj,
+        'problems': problems,
+    }
+    return render(request, 'courses/personal_course.html', context)
