@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Current Courses</title>
+</head>
+<body>
+    <h1>Current Courses</h1>
+        <ul>
+            {% for course in current_courses_list %}
+                <li>
+                    <strong>Course:</strong> {{ course.title }}
+                </li>
+            {% endfor %}
+        </ul>
+</body>
+</html>
