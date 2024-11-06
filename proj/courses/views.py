@@ -134,8 +134,35 @@ def current_courses(request):
     return render(request, 'courses/current_courses.html', context)
 
 
+@login_required
 def completed_courses(request):
-    return render(request, 'courses/completed_courses.html')
+    completed_courses_list = []
+
+    # Проверка на авторизацию пользователя
+    if request.user.is_authenticated:
+        user = request.user
+
+        # Получаем все экземпляры PersonalCourse, где последняя задача решена
+        all_personal_course_obj = PersonalCourse.objects.all().order_by('title')
+        for personal_course_obj in all_personal_course_obj:
+            last_problem = PersonalProblem.objects.filter(course=personal_course_obj).order_by('number').last()
+            if last_problem:
+                if last_problem in user.solved_personal_problems.all():
+                    completed_courses_list.append(personal_course_obj)
+
+        # Получаем все экземпляры Course, где первая задача решена, а последняя нет
+        all_course_obj = Course.objects.all().order_by('title')
+        for course_obj in all_course_obj:
+            last_problem = CourseProblem.objects.filter(course=course_obj).order_by('number').last()
+            if last_problem:
+                if last_problem in user.solved_problems.all():
+                    completed_courses_list.append(course_obj)
+
+    # Передаем объединенный список в контекст
+    context = {
+        'completed_courses_list': completed_courses_list
+    }
+    return render(request, 'courses/completed_courses.html', context)
 
 
 @login_required
