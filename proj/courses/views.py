@@ -94,8 +94,44 @@ def tournament_problem(request, tournament_problem_id):
     return render(request, 'courses/tournament_problem.html')
 
 
+@login_required
 def current_courses(request):
-    return render(request, 'courses/current_courses.html')
+    current_courses_list = []
+
+    # Проверка на авторизацию пользователя
+    if request.user.is_authenticated:
+        user = request.user
+
+        # Получаем все экземпляры PersonalCourse, где первая задача решена, а последняя нет
+        all_personal_course_obj = PersonalCourse.objects.all().order_by('title')
+        for personal_course_obj in all_personal_course_obj:
+            first_problem = PersonalProblem.objects.filter(course=personal_course_obj).order_by('number').first()
+            last_problem = PersonalProblem.objects.filter(course=personal_course_obj).order_by('number').last()
+            if first_problem and last_problem:
+                if (
+                        first_problem in user.solved_personal_problems.all()
+                        and last_problem not in user.solved_personal_problems.all()
+                ):
+                    current_courses_list.append(personal_course_obj)
+
+        # Получаем все экземпляры Course, где первая задача решена, а последняя нет
+        all_course_obj = Course.objects.all().order_by('title')
+        for course_obj in all_course_obj:
+            first_problem = CourseProblem.objects.filter(course=course_obj).order_by('number').first()
+            last_problem = CourseProblem.objects.filter(course=course_obj).order_by('number').last()
+            if first_problem and last_problem:
+                if (
+                        first_problem in user.solved_problems.all()
+                        and last_problem not in user.solved_problems.all()
+                ):
+                    current_courses_list.append(course_obj)
+
+    # Передаем объединенный список в контекст
+    context = {
+        'current_courses_list': current_courses_list
+    }
+
+    return render(request, 'courses/current_courses.html', context)
 
 
 def completed_courses(request):
