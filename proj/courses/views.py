@@ -4,6 +4,7 @@ from courses.models import Category, Course, CourseProblem, PersonalCourse, Pers
     TournamentProblem
 from datetime import date
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 
 def index(request):
@@ -85,7 +86,45 @@ def course(request, slug):
 
 
 def problem(request, problem_id):
-    return render(request, 'courses/problem.html')
+    problem_obj = get_object_or_404(CourseProblem, pk=problem_id)
+    problem_obj_course = problem_obj.course
+
+    if (problem_obj_course.free or (
+            not problem_obj_course.free and request.user.is_authenticated and request.user.end_of_subscription and
+            request.user.end_of_subscription >= date.today())):
+        notification = None
+        try:
+            next_problem = CourseProblem.objects.get(course=problem_obj_course,number=problem_obj.number+1)
+            next_problem_id = next_problem.pk
+        except:
+            next_problem_id = None
+        if request.method == 'POST':
+            selected_answer = request.POST.get('answer')  # получаем ответ, выбранный пользователем
+            if selected_answer:
+                try:
+                    selected_answer = int(selected_answer)  # проверяем, что ответ - это число
+                    if selected_answer == problem_obj.right_answer:
+                        if request.user.is_authenticated and problem_obj not in request.user.solved_problems.all():
+                            # Если ответ правильный и задача решается парвый раз, начисляем пользователю очки
+                            request.user.points += problem_obj.points
+                            request.user.solved_problems.add(problem_obj)
+                            request.user.save()
+                        messages.success(request, 'Молодец! Ответ правильный. Приступим к следующему вопросу?')
+                    else:
+                        messages.error(request, 'Увы, но ответ неверный. Попробуешь еще раз ?')
+                except ValueError:
+                    messages.error(request, 'Увы, но ответ неверный. Попробуешь еще раз ?')
+            else:
+                messages.error(request, 'Ты не выбрал ответ. Попробуешь еще раз ?')
+    else:
+        notification = "Курс доступен по подписке"
+        next_problem_id = None
+    context = {
+        'problem_obj': problem_obj,
+        'next_problem_id': next_problem_id,
+        'notification': notification,
+    }
+    return render(request, 'courses/problem.html', context)
 
 
 def tournament(request):
