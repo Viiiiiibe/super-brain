@@ -57,28 +57,28 @@ class CourseProblem(models.Model):
     text = models.TextField(verbose_name='Текст задачи', blank=False, null=False)
     right_answer = models.IntegerField('Правильный ответ', blank=False, null=False)
     theory = models.TextField(verbose_name='Теория для задачи', blank=True, null=True)
-    answer1_text = models.IntegerField('Текст ответа 1', blank=False, null=False)
+    answer1_text = models.TextField('Текст ответа 1', blank=False, null=False)
     answer1_image = models.ImageField(
         'Картинка ответа 1',
         upload_to='answers_img/',
         blank=True,
         null=True
     )
-    answer2_text = models.IntegerField('Текст ответа 2', blank=False, null=False)
+    answer2_text = models.TextField('Текст ответа 2', blank=False, null=False)
     answer2_image = models.ImageField(
         'Картинка ответа 2',
         upload_to='answers_img/',
         blank=True,
         null=True
     )
-    answer3_text = models.IntegerField('Текст ответа 3', blank=True, null=True)
+    answer3_text = models.TextField('Текст ответа 3', blank=True, null=True)
     answer3_image = models.ImageField(
         'Картинка ответа 3',
         upload_to='answers_img/',
         blank=True,
         null=True
     )
-    answer4_text = models.IntegerField('Текст ответа 4', blank=True, null=True)
+    answer4_text = models.TextField('Текст ответа 4', blank=True, null=True)
     answer4_image = models.ImageField(
         'Картинка ответа 4',
         upload_to='answers_img/',
@@ -129,28 +129,28 @@ class PersonalProblem(models.Model):
     text = models.TextField(verbose_name='Текст задачи', blank=False, null=False)
     right_answer = models.IntegerField('Правильный ответ', blank=False, null=False)
     theory = models.TextField(verbose_name='Теория для задачи', blank=True, null=True)
-    answer1_text = models.IntegerField('Текст ответа 1', blank=False, null=False)
+    answer1_text = models.TextField('Текст ответа 1', blank=False, null=False)
     answer1_image = models.ImageField(
         'Картинка ответа 1',
         upload_to='answers_img/',
         blank=True,
         null=True
     )
-    answer2_text = models.IntegerField('Текст ответа 2', blank=False, null=False)
+    answer2_text = models.TextField('Текст ответа 2', blank=False, null=False)
     answer2_image = models.ImageField(
         'Картинка ответа 2',
         upload_to='answers_img/',
         blank=True,
         null=True
     )
-    answer3_text = models.IntegerField('Текст ответа 3', blank=True, null=True)
+    answer3_text = models.TextField('Текст ответа 3', blank=True, null=True)
     answer3_image = models.ImageField(
         'Картинка ответа 3',
         upload_to='answers_img/',
         blank=True,
         null=True
     )
-    answer4_text = models.IntegerField('Текст ответа 4', blank=True, null=True)
+    answer4_text = models.TextField('Текст ответа 4', blank=True, null=True)
     answer4_image = models.ImageField(
         'Картинка ответа 4',
         upload_to='answers_img/',
@@ -196,28 +196,28 @@ class TournamentProblem(models.Model):
     number = models.IntegerField(verbose_name='Номер задачи в турнире', blank=False, null=False)
     text = models.TextField(verbose_name='Текст задачи', blank=False, null=False)
     right_answer = models.IntegerField('Правильный ответ', blank=False, null=False)
-    answer1_text = models.IntegerField('Текст ответа 1', blank=False, null=False)
+    answer1_text = models.TextField('Текст ответа 1', blank=False, null=False)
     answer1_image = models.ImageField(
         'Картинка ответа 1',
         upload_to='answers_img/',
         blank=True,
         null=True
     )
-    answer2_text = models.IntegerField('Текст ответа 2', blank=False, null=False)
+    answer2_text = models.TextField('Текст ответа 2', blank=False, null=False)
     answer2_image = models.ImageField(
         'Картинка ответа 2',
         upload_to='answers_img/',
         blank=True,
         null=True
     )
-    answer3_text = models.IntegerField('Текст ответа 3', blank=True, null=True)
+    answer3_text = models.TextField('Текст ответа 3', blank=True, null=True)
     answer3_image = models.ImageField(
         'Картинка ответа 3',
         upload_to='answers_img/',
         blank=True,
         null=True
     )
-    answer4_text = models.IntegerField('Текст ответа 4', blank=True, null=True)
+    answer4_text = models.TextField('Текст ответа 4', blank=True, null=True)
     answer4_image = models.ImageField(
         'Картинка ответа 4',
         upload_to='answers_img/',
