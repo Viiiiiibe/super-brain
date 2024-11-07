@@ -1,5 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from courses.models import Category, Course, CourseProblem, PersonalCourse, PersonalProblem
+from account.models import CustomUser
+from courses.models import Category, Course, CourseProblem, PersonalCourse, PersonalProblem, Tournament, \
+    TournamentProblem
 from datetime import date
 from django.contrib.auth.decorators import login_required
 
@@ -86,8 +88,26 @@ def problem(request, problem_id):
     return render(request, 'courses/problem.html')
 
 
-def tournament(request, tournament_id):
-    return render(request, 'courses/tournament.html')
+def tournament(request):
+    today = date.today()
+    try:
+        tournament_obj = Tournament.objects.get(end_date__gte=today,start_date__lte=today)
+    except:
+        tournament_obj = None
+    tournament_top_users = CustomUser.objects.all().order_by('tournament_points')[:10]
+    if request.user.is_authenticated and tournament_obj and request.user in tournament_obj.participants.all():
+        tournament_problems = TournamentProblem.objects.filter(tournament=tournament_obj).order_by('number')
+        notification = None
+    else:
+        tournament_problems = None
+        notification = "Участвуй и стань лучшим!"
+    context = {
+        'tournament_obj': tournament_obj,
+        'tournament_top_users': tournament_top_users,
+        'tournament_problems': tournament_problems,
+        'notification': notification,
+    }
+    return render(request, 'courses/tournament.html', context)
 
 
 def tournament_problem(request, tournament_problem_id):

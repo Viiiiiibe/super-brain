@@ -169,7 +169,9 @@ class Tournament(models.Model):
     participants = models.ManyToManyField(
         User,
         related_name='tournaments',
-        verbose_name='Участники'
+        verbose_name='Участники',
+        blank=True,
+        null=True,
     )
     start_date = models.DateField(verbose_name='Дата начала', auto_now_add=False)
     end_date = models.DateField(verbose_name='Дата завершения', auto_now_add=False)
