@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{{tournament_obj.title}}
+
+{% if not notification %}
+    {% for tournament_problem in tournament_problems %}
+        <li>
+            {{ tournament_problem.number }}
+        </li>
+    {% endfor %}
+{% endif %}
+
+{% for user in tournament_top_users %}
+    <li>
+        {{ user.username }}
+    </li>
+{% endfor %}
+</body>
+</html>
