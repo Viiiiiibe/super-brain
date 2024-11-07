@@ -149,8 +149,57 @@ def tournament(request):
     return render(request, 'courses/tournament.html', context)
 
 
-def tournament_problem(request, tournament_problem_id):
-    return render(request, 'courses/tournament_problem.html')
+@login_required
+def tournament_problem(request, problem_id):
+    today = date.today()
+    user = request.user
+    problem_obj = get_object_or_404(TournamentProblem, pk=problem_id)
+    problem_obj_tournament = problem_obj.tournament
+
+    if (problem_obj_tournament and
+            problem_obj_tournament.end_date >= today >= problem_obj_tournament.start_date and
+            user in problem_obj_tournament.participants.all()):
+        try:
+            next_problem = TournamentProblem.objects.get(course=problem_obj_tournament,number=problem_obj.number+1)
+            next_problem_id = next_problem.pk
+        except:
+            next_problem_id = None
+
+        if request.method == 'POST':
+            selected_answer = request.POST.get('answer')  # получаем ответ, выбранный пользователем
+            if selected_answer:
+                try:
+                    selected_answer = int(selected_answer)  # проверяем, что ответ - это число
+                    if (selected_answer == problem_obj.right_answer and
+                            problem_obj not in user.solved_tournament_problems.all()):
+                        # Если ответ правильный и задача решается парвый раз,
+                        # начисляем пользователю очки турнира и обычные + добавляем в решенные
+                        request.user.tournament_points += problem_obj.points
+                        request.user.points += problem_obj.points
+                        request.user.solved_tournament_problems.add(problem_obj)
+                        request.user.save()
+                        messages.success(request, 'Ответ засчитан! Приступим к следующему вопросу?')
+                    elif (selected_answer != problem_obj.right_answer and
+                            problem_obj not in user.solved_tournament_problems.all()):
+                        # Если ответ не правильный и задача решается парвый раз,
+                        # добавляем в решенные
+                        request.user.solved_tournament_problems.add(problem_obj)
+                        request.user.save()
+                        messages.success(request, 'Ответ засчитан! Приступим к следующему вопросу?')
+                    else:
+                        messages.error(request, 'Эй! Ты уже отвечал! Так не считается!😝')
+                except ValueError:
+                    messages.error(request, 'Не могу прочитать ответ... Попробуешь еще раз ?')
+            else:
+                messages.error(request, 'Ты не выбрал ответ. Попробуешь еще раз ?')
+    else:
+        return redirect('tournament', )
+
+    context = {
+        'problem_obj': problem_obj,
+        'next_problem_id': next_problem_id,
+    }
+    return render(request, 'courses/tournament_problem.html', context)
 
 
 @login_required
