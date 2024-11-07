@@ -247,3 +247,41 @@ def personal_course(request, slug):
         'problems': problems,
     }
     return render(request, 'courses/personal_course.html', context)
+
+
+@login_required
+def personal_problem(request, problem_id):
+    user = request.user
+    problem_obj = get_object_or_404(PersonalProblem, pk=problem_id)
+    problem_obj_course = problem_obj.course
+    if user != problem_obj_course.user:
+        return redirect('personal_courses', )
+    else:
+        try:
+            next_problem = PersonalProblem.objects.get(course=problem_obj_course,number=problem_obj.number+1)
+            next_problem_id = next_problem.pk
+        except:
+            next_problem_id = None
+        if request.method == 'POST':
+            selected_answer = request.POST.get('answer')  # получаем ответ, выбранный пользователем
+            if selected_answer:
+                try:
+                    selected_answer = int(selected_answer)  # проверяем, что ответ - это число
+                    if selected_answer == problem_obj.right_answer:
+                        if problem_obj not in request.user.solved_personal_problems.all():
+                            # Если ответ правильный и задача решается парвый раз, начисляем пользователю очки
+                            request.user.points += problem_obj.points
+                            request.user.solved_personal_problems.add(problem_obj)
+                            request.user.save()
+                        messages.success(request, 'Молодец! Ответ правильный. Приступим к следующему вопросу?')
+                    else:
+                        messages.error(request, 'Увы, но ответ неверный. Попробуешь еще раз ?')
+                except ValueError:
+                    messages.error(request, 'Увы, но ответ неверный. Попробуешь еще раз ?')
+            else:
+                messages.error(request, 'Ты не выбрал ответ. Попробуешь еще раз ?')
+    context = {
+        'problem_obj': problem_obj,
+        'next_problem_id': next_problem_id,
+    }
+    return render(request, 'courses/personal_problem.html', context)
