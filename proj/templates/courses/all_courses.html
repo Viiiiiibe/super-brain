@@ -1,24 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<h2>Текущие курсы</h2>
-<ul>
-    {% for course in current_courses %}
-        <li>{{ course.title }}</li>
-    {% endfor %}
-</ul>
+{% extends 'base.html' %}
+{% block title %}
+Курсы
+{% endblock %}
 
-{% for item in categories_with_courses %}
-    <h2>{{ item.category.title }}</h2>
-    <ul>
-        {% for course in item.courses %}
-            <li>{{ course.title }}</li>
+{% block content %}
+{% load static %}
+<main>
+    <div style="margin-left:200px; max-width: 1200px; min-height:100vh;">
+        <h2>Текущие курсы</h2>
+        <ul class="account-course-block-elements lakki-reddy-regular" style="max-width:800px;">
+            {% for course in current_courses %}
+                <li class="course-element" style="background-image: url({{ course.image.url }}); background-size: 100% 100%; cursor:pointer;" onclick="location.href='{% url 'course' course.slug %}'">
+                    <p><span class="labrada-regular account-course-text-elements" style="color: #000000; font-size: 20px;">{{ course.title }}</span></p>
+                </li>
+            {% endfor %}
+        </ul>
+
+        {% for item in categories_with_courses %}
+            <h2>{{ item.category.title }}</h2>
+            <ul class="account-course-block-elements lakki-reddy-regular" style="max-width:800px;">
+                {% for course in item.courses %}
+                    <li class="course-element" style="background-image: url({{ course.image.url }}); background-size: 100% 100%; cursor:pointer;" onclick="location.href='{% url 'course' course.slug %}'">
+                        <p><span class="labrada-regular account-course-text-elements" style="color: #000000; font-size: 20px;">{{ course.title }}</span></p>
+                    </li>
+                {% endfor %}
+            </ul>
         {% endfor %}
-    </ul>
-{% endfor %}
-</body>
-</html>
+    </div>
+    <img src="{% static 'img/bg-account.png' %}" class="side-image" style="top:35%; height: auto; z-index: -1; transform: unset;">
+</main>
+{% endblock %}
