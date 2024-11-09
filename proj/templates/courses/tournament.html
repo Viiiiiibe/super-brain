@@ -1,24 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-{{tournament_obj.title}}
+{% extends 'base.html' %}
+{% block title %}
+Турниры
+{% endblock %}
 
-{% if not notification %}
-    {% for tournament_problem in tournament_problems %}
-        <li>
-            {{ tournament_problem.number }}
-        </li>
-    {% endfor %}
-{% endif %}
+{% block content %}
+{% load static %}
+<main>
+    <div class="tournament" style="min-height: 100vh;">
+        <h1>Турнир по {{tournament_obj.title}}</h1>
+        <button class="button button--outlined labrada-regular" style="margin-top: 15px;" type="submit">Участвовать</button>
+        <div style="width:100%; display: flex; justify-content: end;">
+            <p><span>Будет проходить до {{tournament_obj.end_date|date:"d.m.Y"}}</span></p>
+        </div>
 
-{% for user in tournament_top_users %}
-    <li>
-        {{ user.username }}
-    </li>
-{% endfor %}
-</body>
-</html>
+        {% if not notification %}
+            {% for tournament_problem in tournament_problems %}
+                <li>
+                    {{ tournament_problem.number }}
+                </li>
+            {% endfor %}
+        {% endif %}
+        <div style="margin-top: 50px;">
+            <ul class="tournament-member-list">
+                {% for user in tournament_top_users %}
+                    <li>
+                        <div class="tournament-member-block">
+                            <p>
+                                <span>{{ forloop.counter }}</span>
+                            </p>
+                            <img src="{% static 'img/avatar.png' %}" alt="logo" style="max-width: 30px; max-height: 30px">
+                            <p>
+                                <span>{{ user.username }}</span>
+                            </p>
+                        </div>
+                        <p style="margin-right: 15px;">
+                            <span>Очков: {{user.tournament_points}}</span>
+                        </p>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        </div>
+</main>
+{% endblock %}
