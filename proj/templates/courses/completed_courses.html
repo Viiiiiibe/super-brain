@@ -1,26 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block title %}
+Пройденные курсы
+{% endblock %}
+
+{% block content %}
+{% load static %}
+<main>
 {% load custom_filters %}
-
-<ul>
-    {% for course in completed_courses_list %}
-        <li>
-            <strong>Course:</strong> {{ course.title }},
-            {% if course|is_instance:"Course" %}
-                <!-- Ссылка для Course -->
-                <a href="{% url 'course' course.slug %}">Перейти к курсу</a>
-            {% elif course|is_instance:"PersonalCourse" %}
-                <!-- Ссылка для PersonalCourse -->
-                <a href="{% url 'personal_course' course.slug %}">Перейти к персональному курсу</a>
-            {% endif %}
-        </li>
-    {% endfor %}
-</ul>
-
-</body>
-</html>
+<div style="margin-left:200px; max-width: 1200px; min-height:100vh;">
+    <h1>Пройденные курсы</h1>
+    <ul class="account-course-block-elements lakki-reddy-regular" style="max-width:800px;">
+        {% for course in completed_courses_list %}
+            <li class="course-element" style="background-image: url({{ course.image.url }}); background-size: 100% 100%; cursor:pointer;" onclick="location.href='{% url 'course' course.slug %}'">
+                {% if course|is_instance:"Course" %}
+                    <!-- Ссылка для Course -->
+                    <a href="{% url 'course' course.slug %}" style="text-decoration:none;">
+                        <p>
+                            <span class="labrada-regular account-course-text-elements" style="color: #000000; font-size: 20px;">
+                                {{ course.title }}
+                            </span>
+                        </p>
+                    </a>
+                {% elif course|is_instance:"PersonalCourse" %}
+                    <!-- Ссылка для PersonalCourse -->
+                    <a href="{% url 'personal_course' course.slug %}" style="text-decoration:none;">
+                        <p>
+                            <span class="labrada-regular account-course-text-elements" style="color: #000000; font-size: 20px;">
+                                {{ course.title }}
+                            </span>
+                        </p>
+                    </a>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+</main>
+{% endblock %}

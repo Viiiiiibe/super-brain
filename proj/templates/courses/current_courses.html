@@ -1,17 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Current Courses</title>
-</head>
-<body>
-    <h1>Current Courses</h1>
-        <ul>
+{% extends 'base.html' %}
+{% block title %}
+Текущие курсы
+{% endblock %}
+
+{% block content %}
+{% load static %}
+<main>
+    <div style="margin-left:200px; max-width: 1200px; min-height:100vh;">
+        <h1>Текущие курсы</h1>
+        <ul class="account-course-block-elements lakki-reddy-regular" style="max-width:800px;">
             {% for course in current_courses_list %}
-                <li>
-                    <strong>Course:</strong> {{ course.title }}
+                <li class="course-element" style="background-image: url({{ course.image.url }}); background-size: 100% 100%; cursor:pointer;" onclick="location.href='{% url 'course' course.slug %}'">
+                    <p><span class="labrada-regular account-course-text-elements" style="color: #000000; font-size: 20px;">{{ course.title }}</span></p>
                 </li>
             {% endfor %}
         </ul>
-</body>
-</html>
+    </div>
+    <img src="{% static 'img/bg-account.png' %}" class="side-image" style="top:35%; height: auto; z-index: -1; transform: unset;">
+</main>
+{% endblock %}
