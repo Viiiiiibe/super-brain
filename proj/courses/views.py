@@ -133,7 +133,7 @@ def tournament(request):
         tournament_obj = Tournament.objects.get(end_date__gte=today,start_date__lte=today)
     except:
         tournament_obj = None
-    tournament_top_users = CustomUser.objects.all().order_by('tournament_points')[:10]
+    tournament_top_users = CustomUser.objects.all().order_by('-tournament_points')[:10]
     if request.user.is_authenticated and tournament_obj and request.user in tournament_obj.participants.all():
         tournament_problems = TournamentProblem.objects.filter(tournament=tournament_obj).order_by('number')
         notification = None

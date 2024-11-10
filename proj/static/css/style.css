@@ -588,3 +588,87 @@ textarea.form-input__field {
 .form-input__field:focus {
   outline:none;
 }
+
+.course-element:hover {
+    transform: scale(1.15);
+}
+
+.answer-image {
+    user-select: none;
+    width: 80px;
+    height: auto;
+}
+
+.answer-radio:checked + .answer-label {
+    background: linear-gradient(90deg, #98EC6B 0%, #56863D 100%);
+}
+
+.answer-radio {
+    display: none;
+}
+
+.answer-label {
+    cursor: pointer;
+    background: rgba(248, 248, 248, 1);
+    border-radius: 20px;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 150px;
+    height: 150px;
+    margin-right: 30px;
+    transition: background 1.5s ease;
+}
+
+.tournament{
+    width: 800px;
+    margin: 0 auto;
+
+    padding: 20px;
+    text-align: center;
+}
+
+.tournament-member-list {
+  list-style: none;
+  display: flex;
+  flex-flow: column;
+  padding: 0;
+  align-items: center;
+}
+
+.tournament-member-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(235, 235, 235, 1);
+  border-radius: 15px;
+  align-content: center;
+  width: 700px;
+  height: 50px;
+  margin-top: 7px;
+}
+
+.tournament-member-block{
+    display: flex;
+    align-items: center;
+    margin-left: 15px;
+}
+
+.tournament-member-block p {
+    margin-left: 15px;
+}
+
+.tournament-member-block img {
+    margin-left: 15px;
+}
+
+.tournament-task {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 35px;
+}
+
+.tournament-task li {
+  margin-right: 30px;
+}
