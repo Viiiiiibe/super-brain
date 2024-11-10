@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% block title %}
+Задача {{ problem_obj.number }}
+{% endblock %}
+
+{% block content %}
+{% load static %}
+<main>
+    <div style="margin-left:200px; max-width: 800px; min-height:100vh;">
+    {% if notification is None%}
+        <h1>Задача {{ problem_obj.number }}</h1>
+        <p>{{ problem_obj.text }}</p>
+
+        <form method="post">
+            {% csrf_token %}
+            <fieldset style="display: flex;">
+                <legend>Выберите ответ:</legend>
+
+                <div>
+                    <input type="radio" id="answer1" name="answer" value="1" class="answer-radio">
+                    <label for="answer1" class="answer-label">
+                        {% if problem_obj.answer1_image %}
+                            <img src="{{ problem_obj.answer1_image.url }}" alt="Ответ 1" class="answer-image">
+                        {% endif %}
+                        <span class="labrada-regular" style="font-size: 20px;">{{ problem_obj.answer1_text }}</span>
+                    </label>
+                </div>
+
+                <div>
+                    <input type="radio" id="answer2" name="answer" value="2" class="answer-radio">
+                    <label for="answer2" class="answer-label">
+                        {% if problem_obj.answer2_image %}
+                            <img src="{{ problem_obj.answer2_image.url }}" alt="Ответ 2" class="answer-image">
+                        {% endif %}
+                        <span class="labrada-regular" style="font-size: 20px;">{{ problem_obj.answer2_text }}</span>
+                    </label>
+                </div>
+
+                {% if problem_obj.answer3_text %}
+                    <div>
+                        <input type="radio" id="answer3" name="answer" value="3" class="answer-radio">
+                        <label for="answer3" class="answer-label">
+                            {% if problem_obj.answer3_image %}
+                                <img src="{{ problem_obj.answer3_image.url }}" alt="Ответ 3" class="answer-image">
+                            {% endif %}
+                            <span class="labrada-regular" style="font-size: 20px;">{{ problem_obj.answer3_text }}</span>
+                        </label>
+                    </div>
+                {% endif %}
+
+                {% if problem_obj.answer4_text %}
+                    <div>
+                        <input type="radio" id="answer4" name="answer" value="4" class="answer-radio">
+                        <label for="answer4" class="answer-label">
+                            {% if problem_obj.answer4_image %}
+                                <img src="{{ problem_obj.answer4_image.url }}" alt="Ответ 4" class="answer-image">
+                            {% endif %}
+                            <span class="labrada-regular" style="font-size: 20px;">{{ problem_obj.answer4_text }}</span>
+                        </label>
+                    </div>
+                {% endif %}
+            </fieldset>
+
+            <button class="button button--outlined labrada-regular" style="margin-top: 15px;" type="submit">Отправить ответ</button>
+        </form>
+
+        <!-- Вывод сообщений об успехе или ошибке -->
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        {% if next_problem_id %}
+            <a class="button button--outlined labrada-regular" href="{% url 'problem' next_problem_id %}" style="margin-top: 15px;">
+                <span>Следующая задача</span>
+            </a>
+        {% else %}
+                <a class="button button--outlined labrada-regular" href="{% url 'tournament' %}" style="margin-top: 15px;">
+                    <span>На страницу курса</span>
+                </a>
+        {% endif %}
+
+    {% else %}
+        {{notification}}
+    {% endif %}
+    </div>
+</main>
+{% endblock %}

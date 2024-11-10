@@ -7,26 +7,40 @@
 {% load static %}
 <main>
     <div class="tournament" style="min-height: 100vh;">
-        <h1>Турнир по {{tournament_obj.title}}</h1>
+        <h1>Турнир по «{{tournament_obj.title}}»</h1>
         <button class="button button--outlined labrada-regular" style="margin-top: 15px;" type="submit">Участвовать</button>
         <div style="width:100%; display: flex; justify-content: end;">
             <p><span>Будет проходить до {{tournament_obj.end_date|date:"d.m.Y"}}</span></p>
         </div>
 
         {% if not notification %}
+            <h2 style="text-align: start;">Задачи:</h2>
+            <ul class="tournament-task lakki-reddy-regular" style="display: flex; max-width:800px;">
             {% for tournament_problem in tournament_problems %}
                 <li>
-                    {{ tournament_problem.number }}
+                    <a href="{% url 'tournament_problem' tournament_problem.pk %}" rel="noopener" class="button button--outlined labrada-regular">
+                        <p>
+                            <span>
+                                Задача №{{ tournament_problem.number }}
+                            </span>
+                        </p>
+                    </a>
                 </li>
             {% endfor %}
+            </ul>
         {% endif %}
         <div style="margin-top: 50px;">
             <ul class="tournament-member-list">
                 {% for user in tournament_top_users %}
-                    <li>
+                    <li style="background:
+                        {% if forloop.counter == 1 %} rgba(255, 215, 0, 1)
+                        {% elif forloop.counter == 2 %} rgba(204, 204, 204, 1)
+                        {% elif forloop.counter == 3 %} rgba(201, 114, 34, 1)
+                        {% else %} rgba(235, 235, 235, 1);
+                        {% endif %}">
                         <div class="tournament-member-block">
                             <p>
-                                <span>{{ forloop.counter }}</span>
+                                <span></span>
                             </p>
                             <img src="{% static 'img/avatar.png' %}" alt="logo" style="max-width: 30px; max-height: 30px">
                             <p>
