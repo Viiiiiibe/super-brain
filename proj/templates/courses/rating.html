@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block title %}
+Рейтинг
+{% endblock %}
+
+{% block content %}
+{% load static %}
+<main>
+    <div class="tournament" style="min-height: 100vh;">
+        <h1>Рейтинг</h1>
+        <div style="margin-top: 50px;">
+            <ul class="tournament-member-list">
+                {% for user in points_top_users %}
+                    <li style="background:
+                        {% if forloop.counter == 1 %} rgba(255, 215, 0, 1)
+                        {% elif forloop.counter == 2 %} rgba(204, 204, 204, 1)
+                        {% elif forloop.counter == 3 %} rgba(201, 114, 34, 1)
+                        {% else %} rgba(235, 235, 235, 1);
+                        {% endif %}">
+                        <div class="tournament-member-block">
+                            <p>
+                                <span></span>
+                            </p>
+                            <img src="{% static 'img/avatar.png' %}" alt="logo" style="max-width: 30px; max-height: 30px">
+                            <p>
+                                <span>{{ user.username }}</span>
+                            </p>
+                        </div>
+                        <p style="margin-right: 15px;">
+                            <span>Очков: {{user.points}}</span>
+                        </p>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        </div>
+</main>
+{% endblock %}
