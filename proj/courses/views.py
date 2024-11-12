@@ -5,6 +5,8 @@ from courses.models import Category, Course, CourseProblem, PersonalCourse, Pers
 from datetime import date
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.db.models import Window, F
+from django.db.models.functions import Rank
 
 
 def index(request):
@@ -133,18 +135,30 @@ def tournament(request):
         tournament_obj = Tournament.objects.get(end_date__gte=today,start_date__lte=today)
     except:
         tournament_obj = None
-    tournament_top_users = CustomUser.objects.all().order_by('-tournament_points')[:10]
+    all_tournament_top_users = CustomUser.objects.all().annotate(
+        rank=Window(
+            expression=Rank(),
+            order_by=F('tournament_points').desc()
+        )
+    ).order_by('-tournament_points')   
+
+    tournament_top_users = all_tournament_top_users[:10]
+
     if request.user.is_authenticated and tournament_obj and request.user in tournament_obj.participants.all():
         tournament_problems = TournamentProblem.objects.filter(tournament=tournament_obj).order_by('number')
         notification = None
+        # Ищем позицию авторизованного пользователя
+        user_position_in_tournament_top = all_tournament_top_users.get(id=request.user.id).rank
     else:
         tournament_problems = None
         notification = "Участвуй и стань лучшим!"
+        user_position_in_tournament_top = None
     context = {
         'tournament_obj': tournament_obj,
         'tournament_top_users': tournament_top_users,
         'tournament_problems': tournament_problems,
         'notification': notification,
+        'user_position_in_tournament_top': user_position_in_tournament_top,
     }
     return render(request, 'courses/tournament.html', context)
 
