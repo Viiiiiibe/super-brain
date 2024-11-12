@@ -134,4 +134,21 @@ def order_an_individual_course_done(request):
 
 
 def rating(request):
-    return render(request, 'account/rating.html')
+    all_top_users = CustomUser.objects.annotate(
+        rank=Window(
+            expression=Rank(),
+            order_by=F('points').desc()
+        )
+    ).order_by('-points')
+    top_users = all_top_users[:10]
+    if request.user.is_authenticated:
+        # Ищем позицию авторизованного пользователя
+        user_position_in_top = all_top_users.get(id=request.user.id).rank
+    else:
+        user_position_in_top = None
+
+    context = {
+        'top_users': top_users,
+        'user_position_in_top': user_position_in_top,
+    }
+    return render(request, 'account/rating.html', context)
