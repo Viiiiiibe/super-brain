@@ -147,3 +147,4 @@ MEDIA_URL = '/media/'
 
 AUTH_USER_MODEL = 'account.CustomUser'
 AUTHENTICATION_BACKENDS = ['account.backends.EmailBackend']
+LOGIN_REDIRECT_URL = 'account:personal_account_main'
