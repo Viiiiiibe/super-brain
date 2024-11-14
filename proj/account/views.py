@@ -23,6 +23,21 @@ class LoginView(LoginView):
     template_name = 'account/login.html'
 
 
+class UserPasswordChange(PasswordChangeView):
+    success_url = reverse_lazy("account:password_change_done")
+    template_name = "account/password_change_form.html"
+
+
+class UserPasswordResetView(PasswordResetView):
+    success_url = reverse_lazy("account:password_reset_done")
+    template_name = "account/password_reset_form.html"
+
+
+class UserPasswordResetConfirmView(PasswordResetConfirmView):
+    success_url = reverse_lazy("account:password_reset_complete")
+    template_name = "account/password_reset_confirm.html"
+
+
 @login_required
 def personal_account_main(request):
     user = request.user
