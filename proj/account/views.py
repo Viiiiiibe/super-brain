@@ -5,42 +5,37 @@ from blog.models import News
 from courses.models import PersonalCourse, PersonalProblem, Course, CourseProblem
 from django.db.models import Window, F
 from django.db.models.functions import Rank
+from django.urls import reverse_lazy
+from django.views.generic import CreateView
+from django.contrib.auth.views import (
+    LoginView, PasswordChangeView, PasswordResetView, PasswordResetConfirmView)
+from .forms import RegisterForm, LoginForm
 
 
-def signup(request):
-    return render(request, 'account/signup.html')
+class SignUp(CreateView):
+    form_class = RegisterForm
+    success_url = reverse_lazy('index')
+    template_name = 'account/signup.html'
 
 
-def logout(request):
-    return render(request, 'account/logout.html')
+class LoginView(LoginView):
+    form_class = LoginForm
+    template_name = 'account/login.html'
 
 
-def login(request):
-    return render(request, 'account/login.html')
+class UserPasswordChange(PasswordChangeView):
+    success_url = reverse_lazy("account:password_change_done")
+    template_name = "account/password_change_form.html"
 
 
-def password_change(request):
-    return render(request, 'account/password_change_form.html')
+class UserPasswordResetView(PasswordResetView):
+    success_url = reverse_lazy("account:password_reset_done")
+    template_name = "account/password_reset_form.html"
 
 
-def password_change_done(request):
-    return render(request, 'account/password_change_done.html')
-
-
-def password_reset(request):
-    return render(request, 'account/password_reset_form.html')
-
-
-def password_reset_done(request):
-    return render(request, 'account/password_reset_done.html')
-
-
-def password_reset_confirm(request):
-    return render(request, 'account/password_reset_confirm.html')
-
-
-def password_reset_complete(request):
-    return render(request, 'account/password_reset_complete.html')
+class UserPasswordResetConfirmView(PasswordResetConfirmView):
+    success_url = reverse_lazy("account:password_reset_complete")
+    template_name = "account/password_reset_confirm.html"
 
 
 @login_required

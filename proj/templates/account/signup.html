@@ -5,6 +5,7 @@
 
 {% block content %}
 {% load static %}
+{% load custom_filters %}
 
 <main>
 <div class="auth-container" style="margin-top: 30px;">
@@ -12,25 +13,36 @@
       <div class="auth-container__body">
          <div class="auth-form">
             <p class="lakki-reddy-regular" style="text-align: center; font-size: 45px; color: rgba(115, 77, 145, 1);">Регистрация</p>
-            <form>
-               <div class="auth-form auth-form_unset-top">
-                  <div class="form-input form-input_size-lg">
-                         <input aria-invalid="false" name="email" placeholder="Ваша почта" class="form-input__field" type="text" value="">
-                  </div>
-                  <div class="form-input form-input_size-lg">
-                         <input aria-invalid="false" name="username" placeholder="Ваш никнейм" class="form-input__field" type="text"value="">
-                  </div>
-                  <div class="form-input form-input_size-lg">
-                         <input aria-invalid="false" name="password" placeholder="Ваш пароль" type="password" class="form-input__field" value="">
-                  </div>
-                  <div class="form-input form-input_size-lg">
-                         <input aria-invalid="false" name="confirm_password" placeholder="Повторите ваш пароль" type="password" class="form-input__field" value="">
-                  </div>
+             {% if form.errors %}
+             {% for field in form %}
+             {% for error in field.errors %}
+             <div class="alert alert-danger">
+                 {{ error|escape }}
+             </div>
+             {% endfor %}
+             {% endfor %}
+             {% for error in form.non_field_errors %}
+             <div class="alert alert-danger">
+                 {{ error|escape }}
+             </div>
+             {% endfor %}
+             {% endif %}
+            <form method="post"{% if action_url %}action="{% url action_url %}"{% endif %}>
+
+                {% csrf_token %}
+                <div class="auth-form auth-form_unset-top">
+                    {% for field in form %}
+                    <div class="form-input form-input_size-lg">
+                        <div>
+                            {{ field |with_placeholder:field.label |add_class:'form-input__field' }}
+                        </div>
+                    </div>
+                    {% endfor %}
                   <p style="font-size: 14px;">Регистрируясь на сайте, вы соглашаетесь с <a target="_blank" href="/index">Пользовательским соглашением</a>.</p>
                   <button class="button button--outlined labrada-regular" tabindex="0" type="submit">
                      <span>Регистрация</span>
                   </button>
-               </div>
+                </div>
             </form>
             <p>Уже есть аккаунт? <a href="{% url 'account:login' %}">Войти</a></p>
          </div>
