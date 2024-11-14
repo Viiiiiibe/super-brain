@@ -16,6 +16,12 @@ services:
       - POSTGRES_PASSWORD=pgpassword
       - POSTGRES_DB=proj_db
 
+  mailhog:
+    image: mailhog/mailhog
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+
   web:
     build: .
     restart: always
