@@ -16,6 +16,16 @@ services:
       - POSTGRES_PASSWORD=pgpassword
       - POSTGRES_DB=proj_db
 
+  redis:
+    image: redis:7-alpine
+
+  worker:
+    build: .
+    restart: always
+    entrypoint: [ "celery", "--workdir=.", "-A", "proj", "worker", "--concurrency=1" ]
+    volumes:
+      - ./proj/:/app
+
   mailhog:
     image: mailhog/mailhog
     ports:
@@ -31,6 +41,7 @@ services:
      - "8000:8000"
     depends_on:
       - db
+      - worker
 
 volumes:
   postgres_data:
