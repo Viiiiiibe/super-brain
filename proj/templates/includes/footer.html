@@ -4,10 +4,13 @@
     <div class="kl-footer__content">
           <div class="kl-footer__menu">
           <div class="kl-footer__group">
-			<h3>О нас</h3>
+			<h3>Информация</h3>
             <ul>
                 <li>
-                  <a href="">FAQ</a>
+                  <a href="{% url 'about:faq' %}">FAQ</a>
+                </li>
+                <li>
+                  <a href="{% url 'about:our_team' %}">О нас</a>
                 </li>
             </ul>
           </div>
