@@ -9,5 +9,5 @@ def contacts(request):
     return render(request, 'about/contacts.html')
 
 
-def faq(request, slug):
+def faq(request):
     return render(request, 'about/faq.html')
