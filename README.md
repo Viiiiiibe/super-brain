@@ -20,6 +20,8 @@ EMAIL_PORT=1025
 EMAIL_USE_TLS='False'
 REDIS_URL="redis://redis/1"
 CELERY_BROKER_URL="redis://redis/0"
+MANAGER_EMAIL="super-brain-manager@example.com"
+DEFAULT_FROM_EMAIL="super-brain-manager-noreply@example.com"
 ```
 - В основной папке для создания образа
 ```console  
