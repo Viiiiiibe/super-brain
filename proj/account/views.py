@@ -1,5 +1,5 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from account.models import CustomUser
 from blog.models import News
 from courses.models import PersonalCourse, PersonalProblem, Course, CourseProblem
@@ -10,6 +10,9 @@ from django.views.generic import CreateView
 from django.contrib.auth.views import (
     LoginView, PasswordChangeView, PasswordResetView, PasswordResetConfirmView)
 from .forms import RegisterForm, LoginForm
+from django.contrib import messages
+from proj.settings import MANAGER_EMAIL
+from account.tasks import send_order_email
 
 
 class SignUp(CreateView):
@@ -120,12 +123,44 @@ def personal_account_main(request):
     return render(request, 'account/personal_account_main.html', context)
 
 
-def order_an_individual_course(request):
-    return render(request, 'account/order_an_individual_course.html')
+@login_required
+def order(request):
+    if request.method == "POST":
+        # Считываем данные из формы
+        contact_method = request.POST.get('contact_method')
+        contact_data = request.POST.get('contact_data')
+        service = request.POST.get('service')
+
+        # Проверяем, чтобы обязательные поля были заполнены
+        if contact_method is None or contact_data is None or service is None:
+            messages.error(request, "Пожалуйста, заполните все поля формы.")
+            return redirect('account:order')  # Перенаправление на ту же страницу
+
+        user = request.user
+        # Формируем текст сообщения
+        subject = f"Новый заказ на {service}"
+        message = (
+            f"Пользователь: {user.pk} - {user.username} - {user.email}\n"
+            f"Тип связи: {contact_method}\n"
+            f"Контакт: {contact_data}\n"
+            f"Услуга: {service}"
+        )
+        manager_email = MANAGER_EMAIL
+
+        try:
+            # Отправляем письмо через задачу Celery
+            send_order_email.delay(subject, message, [manager_email])
+            # Перенаправляем пользователя на страницу подтверждения
+            return redirect('account:order_done')
+        except Exception:
+            messages.error(request, f"Произошла ошибка при отправке письма попробуйте позже")
+            return redirect('account:order')
+
+    return render(request, 'account/order.html', )
 
 
-def order_an_individual_course_done(request):
-    return render(request, 'account/order_an_individual_course_done.html')
+def order_done(request):
+    return render(request, 'account/order_done.html')
 
 
 def rating(request):

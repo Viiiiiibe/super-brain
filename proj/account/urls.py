@@ -50,9 +50,8 @@ urlpatterns = [
 
 
     path('personal_account_main/', views.personal_account_main, name='personal_account_main'),
-    path('order_an_individual_course/', views.order_an_individual_course, name='order_an_individual_course'),
-    path('order_an_individual_course/done/', views.order_an_individual_course_done,
-         name='order_an_individual_course_done'),
+    path('order/', views.order, name='order'),
+    path('order/done/', views.order_done, name='order_done'),
 
     path('rating/', views.rating, name='rating'),
 ]
