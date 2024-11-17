@@ -11,8 +11,8 @@ from django.contrib.auth.views import (
     LoginView, PasswordChangeView, PasswordResetView, PasswordResetConfirmView)
 from .forms import RegisterForm, LoginForm
 from django.contrib import messages
-from django.core.mail import send_mail
-from proj.settings import MANAGER_EMAIL, DEFAULT_FROM_EMAIL
+from proj.settings import MANAGER_EMAIL
+from account.tasks import send_order_email
 
 
 class SignUp(CreateView):
@@ -145,16 +145,11 @@ def order(request):
             f"Контакт: {contact_data}\n"
             f"Услуга: {service}"
         )
+        manager_email = MANAGER_EMAIL
 
-        # Отправляем письмо
         try:
-            send_mail(
-                subject,
-                message,
-                DEFAULT_FROM_EMAIL,  # Email отправителя
-                [MANAGER_EMAIL],
-                fail_silently=False,
-            )
+            # Отправляем письмо через задачу Celery
+            send_order_email.delay(subject, message, [manager_email])
             # Перенаправляем пользователя на страницу подтверждения
             return redirect('account:order_done')
         except Exception:
