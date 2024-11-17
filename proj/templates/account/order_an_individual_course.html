@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block title %}
+Подбор курса
+{% endblock %}
+
+{% block content %}
+{% load static %}
+<main>
+ <div class="labrada-regular" style="max-width: 700px; margin: 0 auto; min-height: 100vh;">
+    <div style="background: rgba(240, 240, 240, 0.3); box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); border-radius: 50px; text-align:center; margin-top: 150px; padding-bottom: 20px;">
+            <p style="font-size: 40px; padding-top: 20px;">Напишите ваши <br> контактные данные</p>
+            <form id="form1">
+              <select name="contact" id="contact-select" style="width: 300px; padding: 3px; border-radius: .5em;">
+                <option value="">Выбор удобной связи</option>
+                <option value="telegram">Telegram</option>
+                <option value="whatsapp">WhatsApp</option>
+                <option value="email">Почта</option>
+                <option value="vk">Вконтакте</option>
+              </select>
+                <br>
+                <div>
+                    <input class="form-input__field" type="text" id="data" name="data" placeholder="Ваши контактные данные" style="margin-top: 10px; width: 300px; display: unset;"/>
+                </div>
+              <select name="contact" id="service-select" style="width: 300px; margin-top: 40px; padding: 3px; border-radius: .5em;">
+                <option value="">Выбор услуги</option>
+                <option value="course">Индивидуальный курс (1000р.)</option>
+                <option value="rep">Репетиторство (4000р.)</option>
+                <option value="sub">Оплатить подписку (300р./мес)</option>
+                <option value="tournament">Участие в турнире (50р.)</option>
+              </select>
+            </form>
+
+            <button type="submit" form="form1" value="Submit" class="button button--outlined" style="margin-top: 10px;">Продолжить</button>
+
+            <details style="margin-top: 20px;">
+              <summary class="summary">Подробнее про услуги</summary>
+                <ul style="list-style: none; padding:10px;">
+                    <li>
+                        <b>Индивидуальный курс (1000р.)</b>
+                        <p>Курс создаваемый с нуля под подробности Вашего ребенка. Перед созданием наш специалист свяжется с Вами и обсудит необходимое содержание курса.</p>
+                    </li>
+                    <li>
+                        <b>Репетиторство (4000р.)</b>
+                        <p>Пакет рассчитан на месяц, включающий в себя 4 индивидуальных курса и кураторство процесса обучения от нашего специалиста. Перед созданием каждого из курсов наш специалист свяжется с Вами и обсудит необходимое содержание курса, проведет созвон и онлайн-тестирование с Вашим ребенком, после чего создаст курс оптимально подходящий именно для Вашего ребенка.</p>
+                    </li>
+                    <li>
+                        <b>Оплатить подписку (300р./мес)</b>
+                        <p>Оплатить подписку на следующий месяц, получив доступ ко всем подготовленным общим курсам.</p>
+                    </li>
+                    <li>
+                        <b>Участие в турнире (50р.)</b>
+                        <p>Оплатить участие в текущем турнире.</p>
+                    </li>
+                </ul>
+            </details>
+
+    </div>
+ </div>
+</main>
+{% endblock %}
