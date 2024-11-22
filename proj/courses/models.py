@@ -28,7 +28,6 @@ class Course(models.Model):
         related_name='courses_in_category',
         verbose_name='Категория',
     )
-    number_of_problems = models.IntegerField(verbose_name='Количество задач в курсе', blank=False, null=False)
     image = models.ImageField(
         'Обложка курса',
         upload_to='courses_img/',
@@ -101,7 +100,6 @@ class PersonalCourse(models.Model):
         related_name='personal_courses',
         verbose_name='Пользователя'
     )
-    number_of_problems = models.IntegerField(verbose_name='Количество задач в курсе', blank=False, null=False)
     image = models.ImageField(
         'Обложка курса',
         upload_to='courses_img/',
