@@ -49,6 +49,8 @@ INSTALLED_APPS = [
     'account.apps.AccountConfig',
     'about.apps.AboutConfig',
     'blog.apps.BlogConfig',
+    'promocodes.apps.PromocodesConfig',
+    'django_celery_beat',
 ]
 
 MIDDLEWARE = [
