@@ -1,6 +1,6 @@
 import os
-
 from celery import Celery
+from celery.schedules import crontab  # Для использования расписания с точностью до минут
 
 # Set the default Django settings module for the 'celery' program.
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'proj.settings')
@@ -12,6 +12,14 @@ app = Celery('proj')
 # - namespace='CELERY' means all celery-related configuration keys
 #   should have a `CELERY_` prefix.
 app.config_from_object('django.conf:settings', namespace='CELERY')
+
+# Настройка расписания Celery-Beat
+app.conf.beat_schedule = {
+    'send-emails-after-tournament-daily': {
+        'task': 'courses.tasks.send_emails_after_tournament',  # путь к задаче
+        'schedule': crontab(hour=0, minute=0),  # Ежедневно в полночь
+    },
+}
 
 # Load task modules from all registered Django apps.
 app.autodiscover_tasks()

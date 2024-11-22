@@ -26,6 +26,13 @@ services:
     volumes:
       - ./proj/:/app
 
+  celery_beat:
+    build: .
+    restart: always
+    entrypoint: [ "celery", "--workdir=.", "-A", "proj", "beat", "-l", "warning", "--scheduler", "django_celery_beat.schedulers:DatabaseScheduler" ]
+    volumes:
+      - ./proj/:/app
+
   mailhog:
     image: mailhog/mailhog
     ports:
