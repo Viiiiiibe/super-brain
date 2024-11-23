@@ -283,6 +283,10 @@ a:hover,
     height: 100%;
 }
 
+.main-text {
+     font-size: 60px;
+}
+
 .kl-footer {
   background-color: #25262C;
 }
@@ -380,6 +384,7 @@ color: rgba(255, 255, 255, 0.7);
   padding: 0;
   margin-bottom: 35px;
   z-index:1;
+  text-align: center;
 }
 
 .first-block li {
@@ -411,6 +416,15 @@ color: rgba(255, 255, 255, 0.7);
     margin: 20px 0; /* Отступы сверху и снизу */
 }
 
+.third-block-container {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    margin: 0 auto;
+    max-width: 800px;
+    align-items: flex-end;
+}
+
 .third-block {
   list-style: none;
   display: flex;
@@ -424,9 +438,14 @@ color: rgba(255, 255, 255, 0.7);
 }
 
 .banner {
-  width: 700px;
+  width: 80vw;
   border: 6px solid black;
-  padding: 50px;
+  padding: 3vw;
+}
+
+.last-block {
+    flex-flow:column;
+    padding-bottom: 200px;
 }
 
 
@@ -709,7 +728,7 @@ textarea.form-input__field {
 .kl-navbar__mobile-menu {
     z-index: 211;
     display: none;
-    position: absolute;
+    position: fixed;
     left: 0;
     right: 0;
     background-color: #fff;
@@ -731,7 +750,7 @@ textarea.form-input__field {
 .kl-navbar__burger-line {
     width: 30px;
     height: 4px;
-    background-color: #333;
+    background-color: #734D91;
     margin: 6px 0;
     display: block;
 }
@@ -773,5 +792,57 @@ textarea.form-input__field {
 
     .kl-footer__group {
             width:80%;
+    }
+
+    .side-image {
+        transform: none;
+    }
+
+    .first-block {
+        display: block;
+
+        li {
+            margin: 0;
+        }
+    }
+
+    .second-block {
+        flex-flow: column;
+        align-items: center;
+
+        li {
+            width: 75%;
+            height: auto;
+            margin: 10px 0;
+        }
+    }
+
+    .third-block-container {
+        flex-flow: column;
+        align-items: center;
+    }
+
+    .third-block {
+        flex-flow: column;
+        margin-bottom: 0;
+        align-items: center;
+        max-width: 90vw;
+        li {
+            margin: 10px 10px;
+        }
+    }
+
+    .last-block {
+        padding-bottom: 0;
+    }
+    #lastimage {
+        display: none;
+    }
+
+}
+
+@media (max-width: 1024px) {
+    .main-text {
+        font-size: 40px;
     }
 }
