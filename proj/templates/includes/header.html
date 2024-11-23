@@ -24,12 +24,24 @@
                         </a>
                     </li>
                 </ul>
-
+                {% if not request.user.is_authenticated %}
                 <div class="kl-navbar__end">
                     <a href="{% url 'account:login' %}" rel="noopener" class="button button--outlined labrada-regular">
                         <span>Войти</span>
                     </a>
                 </div>
+                {% else %}
+                <div class="kl-navbar__end">
+                    <a href="{% url 'account:personal_account_main' %}" rel="noopener" class="labrada-regular" style="display: flex
+;
+    justify-content: center;
+    align-items: center;
+    color: black;">
+                        <span>Вы вошли как {{ request.user }}</span>
+                        <img src="{% static 'img/avatar.png' %}" style="max-width: 50px; margin-left: 10px;">
+                    </a>
+                </div>
+                {% endif %}
 
                 <!-- Иконка бургера для мобильных устройств -->
                 <div class="kl-navbar__burger" id="burger-icon">
@@ -61,9 +73,19 @@
             </a>
         </li>
         <li class="kl-navbar__item">
-            <a href="{% url 'account:login' %}" rel="noopener" class="button button--outlined labrada-regular">
-                <span>Войти</span>
-            </a>
+            {% if not request.user.is_authenticated %}
+                    <a href="{% url 'account:login' %}" rel="noopener" class="button button--outlined labrada-regular">
+                        <span>Войти</span>
+                    </a>
+                {% else %}
+                    <a href="{% url 'account:personal_account_main' %}" rel="noopener" class="labrada-regular" style="display: flex
+;
+    align-items: center;
+    color: black;">
+                        <span>Вы вошли как {{ request.user }}</span>
+                        <img src="{% static 'img/avatar.png' %}" style="max-width: 50px; margin-left: 10px;">
+                    </a>
+                {% endif %}
         </li>
     </ul>
 </div>
