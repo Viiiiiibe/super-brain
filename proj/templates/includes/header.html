@@ -1,39 +1,76 @@
 {% load static %}
 
 <nav class="kl-navbar content-wrapper">
-      <div class="navbar-container">
-          <div class="main-header">
+    <div class="navbar-container">
+        <div class="main-header">
             <a href="{% url 'index' %}">
                 <img src="{% static 'img/logo.png' %}" alt="logo" width="100%" style="max-width: 80px; max-height: 80px" class="kl-navbar__logo">
             </a>
             <div class="kl-navbar__content">
-              <ul class="kl-navbar__menu">
-                  <li class="kl-navbar__item kl-navbar__parent">
-                    <a class="kl-navbar__button labrada-regular" href="{% url 'all_courses' %}">
-                      <span>Курсы</span>
+                <ul class="kl-navbar__menu">
+                    <li class="kl-navbar__item kl-navbar__parent">
+                        <a class="kl-navbar__button labrada-regular" href="{% url 'all_courses' %}">
+                            <span>Курсы</span>
+                        </a>
+                    </li>
+                    <li class="kl-navbar__item">
+                        <a class="kl-navbar__button labrada-regular" href="{% url 'tournament' %}">
+                            <span>Турнир</span>
+                        </a>
+                    </li>
+                    <li class="kl-navbar__item">
+                        <a class="kl-navbar__button labrada-regular" href="{% url 'account:rating' %}">
+                            <span>Рейтинг</span>
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="kl-navbar__end">
+                    <a href="{% url 'account:login' %}" rel="noopener" class="button button--outlined labrada-regular">
+                        <span>Войти</span>
                     </a>
-                  </li>
-                  <li class="kl-navbar__item">
-                    <a class="kl-navbar__button labrada-regular" href="{% url 'tournament' %}">
-                      <span>Турнир</span>
-                    </a>
-                    <div class="kl-navbar-submenu-wrapper">
-                    </div>
-                  </li>
-                  <li class="kl-navbar__item">
-                    <a class="kl-navbar__button labrada-regular" href="{% url 'account:rating' %}">
-                      <span>Рейтинг</span>
-                    </a>
-                    <div class="kl-navbar-submenu-wrapper">
-                    </div>
-                  </li>
-              </ul>
-              <div class="kl-navbar__end">
-                <a href="{% url 'account:login' %}" rel="noopener" class="button button--outlined labrada-regular">
-                    <span>Войти</span>
-                </a>
-              </div>
+                </div>
+
+                <!-- Иконка бургера для мобильных устройств -->
+                <div class="kl-navbar__burger" id="burger-icon">
+                    <span class="kl-navbar__burger-line"></span>
+                    <span class="kl-navbar__burger-line"></span>
+                    <span class="kl-navbar__burger-line"></span>
+                </div>
             </div>
-          </div>
+        </div>
     </div>
 </nav>
+
+<!-- Мобильное меню -->
+<div class="kl-navbar__mobile-menu" id="mobile-menu">
+    <ul class="kl-mobile__menu">
+        <li class="kl-navbar__item">
+            <a class="kl-navbar__button labrada-regular" href="{% url 'all_courses' %}">
+                <span>Курсы</span>
+            </a>
+        </li>
+        <li class="kl-navbar__item">
+            <a class="kl-navbar__button labrada-regular" href="{% url 'tournament' %}">
+                <span>Турнир</span>
+            </a>
+        </li>
+        <li class="kl-navbar__item">
+            <a class="kl-navbar__button labrada-regular" href="{% url 'account:rating' %}">
+                <span>Рейтинг</span>
+            </a>
+        </li>
+        <li class="kl-navbar__item">
+            <a href="{% url 'account:login' %}" rel="noopener" class="button button--outlined labrada-regular">
+                <span>Войти</span>
+            </a>
+        </li>
+    </ul>
+</div>
+
+<script>
+    document.getElementById('burger-icon').addEventListener('click', function() {
+        var mobileMenu = document.getElementById('mobile-menu');
+        mobileMenu.classList.toggle('open');
+    });
+</script>

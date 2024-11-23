@@ -22,7 +22,12 @@ html {
 }
 
 body {
+    width: 100%;
+    height: auto;
     margin: 0;
+    min-height: 100%;
+    padding: 0;
+    min-width: 320px;
 }
 
 main {
@@ -155,7 +160,7 @@ a:hover,
 }
 
 .main-header{
-    padding:0 50px;
+    padding:0 4vw;
 
     position: relative;
     background-color: rgb(255, 255, 255);
@@ -305,12 +310,6 @@ color: rgba(255, 255, 255, 0.7);
   margin: -16px 0;
 }
 
-@media screen and (max-width: 680px) {
-  .kl-footer__menu {
-    margin: 16px -16px 0;
-  }
-}
-
 .kl-footer__menu ul {
   list-style: none;
   padding: 0;
@@ -333,7 +332,7 @@ color: rgba(255, 255, 255, 0.7);
 }
 
 .kl-footer__group {
-  margin: 16px 82px;
+  margin: 16px 6vw;
 }
 
 @media screen and (max-width: 680px) {
@@ -704,4 +703,75 @@ textarea.form-input__field {
   border-color: #734D91;
   color: rgba(255, 255, 255, 1);
   transform: scale(1.05);
+}
+
+
+.kl-navbar__mobile-menu {
+    z-index: 211;
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    padding: 10px;
+}
+
+.kl-navbar__mobile-menu ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+
+/* Иконка бургера */
+.kl-navbar__burger {
+    display: none;
+    cursor: pointer;
+}
+
+.kl-navbar__burger-line {
+    width: 30px;
+    height: 4px;
+    background-color: #333;
+    margin: 6px 0;
+    display: block;
+}
+
+.kl-mobile__menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Адаптация под мобильные устройства */
+@media (max-width: 768px) {
+    .kl-navbar__menu, .kl-navbar__end {
+        display: none;
+    }
+
+    .kl-navbar__item {
+        margin-top: 10px;
+    }
+
+    .kl-navbar__burger {
+        display: block;
+    }
+
+    .kl-navbar__content {
+        justify-content: end;
+    }
+
+    .kl-navbar__mobile-menu.open {
+        display: block;
+    }
+
+    .kl-footer__content {
+        justify-content: unset;
+    }
+    .kl-footer__menu {
+        flex-flow: column;
+    }
+
+    .kl-footer__group {
+            width:80%;
+    }
 }
