@@ -6,7 +6,7 @@
 {% block content %}
 {% load static %}
 <main>
-    <div style="margin-left:200px; max-width: 1200px; min-height:100vh;">
+    <div class="courses-container">
         <h2>Текущие курсы</h2>
         <ul class="account-course-block-elements lakki-reddy-regular" style="max-width:800px;">
             {% for course in current_courses %}
@@ -27,6 +27,6 @@
             </ul>
         {% endfor %}
     </div>
-    <img src="{% static 'img/bg-account.png' %}" class="side-image" style="top:35%; height: auto; z-index: -1; transform: unset;">
+    <img src="{% static 'img/bg-account.png' %}" id="lastimage" class="side-image" style="top:35%; height: auto; z-index: -1; transform: unset;">
 </main>
 {% endblock %}

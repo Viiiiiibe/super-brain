@@ -486,6 +486,23 @@ color: rgba(255, 255, 255, 0.7);
   margin-right: 30px;
 }
 
+.course-task-block-elements {
+  list-style: none;
+  display: flex;
+  padding: 0;
+  margin-bottom: 35px;
+  align-items: center;
+}
+
+.course-task-block-elements li {
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  width: 150px;
+  margin: 15px 15px;
+}
+
 .account-course-news-elements {
   list-style: none;
   padding: 0;
@@ -639,6 +656,12 @@ textarea.form-input__field {
     transition: background 1.5s ease;
 }
 
+.courses-container {
+    margin-left:200px;
+    max-width: 1200px;
+    min-height:100vh;
+}
+
 .tournament{
     width: 800px;
     margin: 0 auto;
@@ -762,6 +785,24 @@ textarea.form-input__field {
 }
 
 /* Адаптация под мобильные устройства */
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .main-text {
+        font-size: 40px;
+    }
+
+    .courses-container {
+        margin-left: 100px;
+    }
+
+    .account-course-block-elements {
+        li {
+            width: 130px;
+            height: 130px;
+        }
+    }
+}
+
 @media (max-width: 768px) {
     .kl-navbar__menu, .kl-navbar__end {
         display: none;
@@ -839,10 +880,21 @@ textarea.form-input__field {
         display: none;
     }
 
-}
+    .courses-container {
+        margin-left: 0px;
+        text-align: center;
+    }
 
-@media (max-width: 1024px) {
-    .main-text {
-        font-size: 40px;
+    .account-course-block-elements {
+        flex-flow: column;
+
+        li {
+            margin: 10px 0;
+        }
+    }
+
+    .course-task-block-elements {
+        flex-flow: column;
+        flex-wrap: unset;
     }
 }
