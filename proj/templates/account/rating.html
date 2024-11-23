@@ -10,7 +10,7 @@
         <h1>Рейтинг</h1>
         <div style="margin-top: 50px;">
             <ul class="tournament-member-list">
-                {% for user in points_top_users %}
+                {% for user in top_users %}
                     <li style="background:
                         {% if forloop.counter == 1 %} rgba(255, 215, 0, 1)
                         {% elif forloop.counter == 2 %} rgba(204, 204, 204, 1)
@@ -19,7 +19,7 @@
                         {% endif %}">
                         <div class="tournament-member-block">
                             <p>
-                                <span></span>
+                                <span>{{ forloop.counter }}</span>
                             </p>
                             <img src="{% static 'img/avatar.png' %}" alt="logo" style="max-width: 30px; max-height: 30px">
                             <p>
@@ -31,6 +31,22 @@
                         </p>
                     </li>
                 {% endfor %}
+            </ul>
+            <ul class="tournament-member-list" style="margin-top: 50px;">
+                    <li>
+                        <div class="tournament-member-block">
+                            <p>
+                                <span>{{ user_position_in_top }}</span>
+                            </p>
+                            <img src="{% static 'img/avatar.png' %}" alt="logo" style="max-width: 30px; max-height: 30px">
+                            <p>
+                                <span>{{ request.user }}</span>
+                            </p>
+                        </div>
+                        <p style="margin-right: 15px;">
+                            <span>Очков: {{request.user.points}}</span>
+                        </p>
+                    </li>
             </ul>
         </div>
         </div>
