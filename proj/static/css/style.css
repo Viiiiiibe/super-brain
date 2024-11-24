@@ -821,6 +821,13 @@ textarea.form-input__field {
   transform: scale(1.05);
 }
 
+.signup-header {
+     font-size: 45px;
+}
+
+.order-header {
+     font-size: 40px;
+}
 
 .kl-navbar__mobile-menu {
     z-index: 211;
@@ -1088,6 +1095,14 @@ textarea.form-input__field {
     .account-main-info {
         align-items: center;
         text-align: center;
+    }
+
+    .signup-header {
+        font-size: 35px;
+    }
+
+    .order-header {
+        font-size: 30px;
     }
 }
 

@@ -8,7 +8,7 @@
 <main>
  <div class="labrada-regular" style="max-width: 700px; margin: 0 auto; min-height: 100vh;">
     <div style="background: rgba(240, 240, 240, 0.3); box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); border-radius: 50px; text-align:center; margin-top: 150px; padding-bottom: 20px;">
-            <p style="font-size: 40px; padding-top: 20px;">Напишите ваши <br> контактные данные</p>
+            <p class="order-header" style=" padding-top: 20px;">Напишите ваши <br> контактные данные</p>
             {% if form.errors %}
                 <div class="error-messages">
                     {% for field, errors in form.errors.items %}

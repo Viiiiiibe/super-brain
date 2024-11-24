@@ -72,8 +72,12 @@
         <p><span class="labrada-regular" style="font-size: 30px; font-weight: bold;">Пройденые курсы</span></p>
         <ul class="account-course-block-elements lakki-reddy-regular" style="max-width:800px;">
             {% for course in completed_courses_list %}
-            <li class="course-element" style="background-image: url({{ course.image.url }}); background-size: 100% 100%; cursor:pointer;" onclick="location.href='{% url 'course' course.slug %}'">
-                <p><span class="labrada-regular account-course-text-elements" style="color: #000000; font-size: 20px;">Русский</span></p>
+            <li class="course-element" style="background-image: url({{ course.image.url }}); background-size: 100% 100%; cursor:pointer;" {% if course.user %}
+            onclick="location.href='{% url 'personal_course' course.slug %}'"
+            {% else %}
+            onclick="location.href='{% url 'course' course.slug %}'"
+            {% endif %}>
+                <p><span class="labrada-regular account-course-text-elements" style="color: #000000; font-size: 20px;">{{ course.title }}</span></p>
             </li>
             {% endfor %}
             {% if completed_courses_list %}

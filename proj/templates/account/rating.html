@@ -32,6 +32,7 @@
                     </li>
                 {% endfor %}
             </ul>
+            {% if request.user.is_authenticated%}
             <ul class="tournament-member-list" style="margin-top: 50px;">
                     <li>
                         <div class="tournament-member-block">
@@ -48,6 +49,7 @@
                         </p>
                     </li>
             </ul>
+            {% endif %}
         </div>
         </div>
 </main>

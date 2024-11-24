@@ -7,8 +7,10 @@
 {% load static %}
 <main>
     <div class="tournament" style="min-height: 100vh;">
-        <h1>Турнир по «{{tournament_obj.title}}»</h1>
-        <button class="button button--outlined labrada-regular" style="margin-top: 15px;" type="submit">Участвовать</button>
+        <h1>«{{tournament_obj.title}}»</h1>
+        {% if not request.user.is_authenticated%}
+        <a href="{% url 'account:order' %}" class="button button--outlined labrada-regular" style="margin-top: 15px;">Участвовать</a>
+        {% endif %}
         <div class="date-container">
             <p><span>Будет проходить до {{tournament_obj.end_date|date:"d.m.Y"}}</span></p>
         </div>
@@ -42,7 +44,7 @@
                         {% endif %}">
                         <div class="tournament-member-block">
                             <p>
-                                <span></span>
+                                <span>{{ forloop.counter }}</span>
                             </p>
                             <img src="{% static 'img/avatar.png' %}" alt="logo" style="max-width: 30px; max-height: 30px">
                             <p>
@@ -55,6 +57,7 @@
                     </li>
                 {% endfor %}
             </ul>
+            {% if request.user.is_authenticated%}
             <ul class="tournament-member-list" style="margin-top: 50px;">
                     <li>
                         <div class="tournament-member-block">
@@ -67,10 +70,11 @@
                             </p>
                         </div>
                         <p style="margin-right: 15px;">
-                            <span>Очков: {{request.user.points}}</span>
+                            <span>Очков: {{request.user.tournament_points}}</span>
                         </p>
                     </li>
             </ul>
+            {% endif %}
         </div>
         </div>
 </main>
