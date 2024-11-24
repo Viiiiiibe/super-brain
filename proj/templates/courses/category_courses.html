@@ -6,8 +6,8 @@
 {% block content %}
 {% load static %}
 <main>
-    <div style="margin-left:200px; max-width: 1200px; min-height:100vh;">
-        <h1>{{ category.title }}</h1>
+    <div class="courses-container">
+        <h2>{{ category.title }}</h2>
         <ul class="account-course-block-elements lakki-reddy-regular" style="max-width:800px;">
             {% for course in courses %}
             <li class="course-element" style="background-image: url({{ course.image.url }}); background-size: 100% 100%; cursor:pointer;" onclick="location.href='{% url 'course' course.slug %}'">
@@ -16,6 +16,6 @@
             {% endfor %}
         </ul>
     </div>
-    <img src="{% static 'img/bg-account.png' %}" class="side-image" style="top:35%; height: auto; z-index: -1; transform: unset;">
+    <img src="{% static 'img/bg-account.png' %}" id="lastimage" class="side-image" style="top:35%; height: auto; z-index: -1; transform: unset;">
 </main>
 {% endblock %}

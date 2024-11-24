@@ -6,14 +6,18 @@
 {% block content %}
 {% load static %}
 <main>
-    <div style="margin-left:200px; max-width: 800px; min-height:100vh;">
+    <div class="courses-container">
     {% if notification is None%}
         <h1>Задача {{ problem_obj.number }}</h1>
         <p>{{ problem_obj.text }}</p>
 
         <form method="post">
             {% csrf_token %}
-            <fieldset style="display: flex;">
+            <fieldset style="flex-wrap: wrap;
+    display: flex
+;
+    width: fit-content;
+justify-content: center;">
                 <legend>Выберите ответ:</legend>
 
                 <div>
@@ -66,7 +70,7 @@
 
         <!-- Вывод сообщений об успехе или ошибке -->
         {% if messages %}
-            <ul>
+            <ul style="padding: 0">
                 {% for message in messages %}
                     <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
                 {% endfor %}
@@ -74,11 +78,11 @@
         {% endif %}
 
         {% if next_problem_id %}
-            <a class="button button--outlined labrada-regular" href="{% url 'problem' next_problem_id %}" style="margin-top: 15px;">
+            <a class="button button--outlined labrada-regular" href="{% url 'problem' next_problem_id %}" style="margin: 15px 0;">
                 <span>Следующая задача</span>
             </a>
         {% else %}
-                <a class="button button--outlined labrada-regular" href="{% url 'tournament' %}" style="margin-top: 15px;">
+                <a class="button button--outlined labrada-regular" href="{% url 'tournament' %}" style="margin: 15px 0;">
                     <span>На страницу курса</span>
                 </a>
         {% endif %}

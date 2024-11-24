@@ -7,8 +7,8 @@
 {% load static %}
 <main>
 {% load custom_filters %}
-<div style="margin-left:200px; max-width: 1200px; min-height:100vh;">
-    <h1>Пройденные курсы</h1>
+<div class="courses-container">
+    <h2>Пройденные курсы</h2>
     <ul class="account-course-block-elements lakki-reddy-regular" style="max-width:800px;">
         {% for course in completed_courses_list %}
             <li class="course-element" style="background-image: url({{ course.image.url }}); background-size: 100% 100%; cursor:pointer;" onclick="location.href='{% url 'course' course.slug %}'">

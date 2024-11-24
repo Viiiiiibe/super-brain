@@ -9,13 +9,14 @@
     <div class="tournament" style="min-height: 100vh;">
         <h1>Турнир по «{{tournament_obj.title}}»</h1>
         <button class="button button--outlined labrada-regular" style="margin-top: 15px;" type="submit">Участвовать</button>
-        <div style="width:100%; display: flex; justify-content: end;">
+        <div class="date-container">
             <p><span>Будет проходить до {{tournament_obj.end_date|date:"d.m.Y"}}</span></p>
         </div>
 
         {% if not notification %}
-            <h2 style="text-align: start;">Задачи:</h2>
-            <ul class="tournament-task lakki-reddy-regular" style="display: flex; max-width:800px;">
+            <h2 style="text-align: center;">Задачи</h2>
+            <div>
+            <ul class="tournament-task lakki-reddy-regular" style="display: flex; flex-wrap: wrap;">
             {% for tournament_problem in tournament_problems %}
                 <li>
                     <a href="{% url 'tournament_problem' tournament_problem.pk %}" rel="noopener" class="button button--outlined labrada-regular">
@@ -28,6 +29,7 @@
                 </li>
             {% endfor %}
             </ul>
+            </div>
         {% endif %}
         <div style="margin-top: 50px;">
             <ul class="tournament-member-list">
@@ -52,6 +54,22 @@
                         </p>
                     </li>
                 {% endfor %}
+            </ul>
+            <ul class="tournament-member-list" style="margin-top: 50px;">
+                    <li>
+                        <div class="tournament-member-block">
+                            <p>
+                                <span>{{ user_position_in_tournament_top }}</span>
+                            </p>
+                            <img src="{% static 'img/avatar.png' %}" alt="logo" style="max-width: 30px; max-height: 30px">
+                            <p>
+                                <span>{{ request.user }}</span>
+                            </p>
+                        </div>
+                        <p style="margin-right: 15px;">
+                            <span>Очков: {{request.user.points}}</span>
+                        </p>
+                    </li>
             </ul>
         </div>
         </div>

@@ -11,11 +11,11 @@
   <div class="kl-rich-text--center" style="background-color:#F8F9FB;">
         <ul class="first-block lakki-reddy-regular">
             <li>
-                <h1><span style="color: #734D91; font-weight: bold; font-size: 60px;">Мир знаний в<br>твоем экране</span></h1>
+                <h1><span style="color: #734D91; font-weight: bold;" class="main-text">Мир знаний в<br>твоем экране</span></h1>
                 <p><span style="color: #000000; font-size: 20px; font-weight: bold;">Учись, играя, и стань лучшим!</span></p>
             </li>
             <li>
-                <img src="{% static 'img/mainimg.png' %}">
+                <img style="max-width: 75vw;" src="{% static 'img/mainimg.png' %}">
             </li>
         </ul>
       <img src="{% static 'img/bg1.png' %}" class="side-image">
@@ -44,50 +44,53 @@
                      <p><span style="color: #ffffff; font-size: 20px">Куча курсов по цене шоколадки</span></p>
                 </li>
             </ul>
-        <img src="{% static 'img/bg2.png' %}" class="side-image" style="left:0; top:100%; height: auto; z-index: -1;">
+        <img src="{% static 'img/bg2.png' %}" class="side-image" style="left:0; top:100%; height: auto; max-height: 100vw; z-index: -1;">
   </div>
 
-    <div style="display: flex; flex-flow: column wrap; align-items: center; margin: 0 auto; max-width: 800px; align-items: flex-end;">
-        <ul class="third-block lakki-reddy-regular" style="max-width:800px;">
+    <div class="third-block-container">
+        <ul class="third-block lakki-reddy-regular">
             <li>
-                <img src="{% static 'img/kidimg1.png' %}">
+                <img src="{% static 'img/kidimg1.png' %}" style="max-width: 80vw;">
             </li>
             <li>
                 <p><span class="labrada-regular" style="color: #734D91; font-size: 30px; font-weight: bold;">Хочешь индивидуальный курс?</span></p>
                 <p><span style="color: #000000; font-size: 20px">Наши специалисты составят программу специально для тебя!</span></p>
-                <a href="" target="_blank" rel="noopener" class="button button--outlined labrada-regular">
+                <a href="{% url 'account:order' %}" rel="noopener" class="button button--outlined labrada-regular">
                     <span>Подобрать курс</span>
                 </a>
             </li>
         </ul>
-        <ul class="third-block lakki-reddy-regular" style="max-width:800px;width:100%;justify-content:space-between;">
+        <ul class="third-block lakki-reddy-regular" style="width:100%;justify-content:space-between;">
             <li>
                 <p><span class="labrada-regular" style="color: #734D91; font-size: 30px; font-weight: bold;">Начни игру!</span></p>
                 <p><span style="color: #000000; font-size: 20px">Наши курсы уже ждут тебя!</span></p>
-                <a href="" target="_blank" rel="noopener" class="button button--outlined labrada-regular">
+                <a href="{% url 'all_courses' %}" rel="noopener" class="button button--outlined labrada-regular">
                     <span>Попробовать себя</span>
                 </a>
             </li>
             <li>
-                <img src="{% static 'img/kidimg2.png' %}">
+                <img src="{% static 'img/kidimg2.png' %}" style="max-width: 80vw;">
             </li>
         </ul>
   </div>
 
-    <div class="kl-rich-text--center" style="flex-flow:column; padding-bottom: 200px;">
+    <div class="kl-rich-text--center last-block">
         <div class="banner">
             <p>Здесь будет баннер партнеров.</p>
         </div>
         <ul class="third-block lakki-reddy-regular" style="max-width:800px;width:100%;justify-content:space-between;">
             <li>
-                <p><span class="labrada-regular" style="color: #734D91; font-size: 30px; font-weight: bold;">Начни игру!</span></p>
-                <p><span style="color: #000000; font-size: 20px">Наши курсы уже ждут тебя!</span></p>
+                <p><span class="labrada-regular" style="color: #734D91; font-size: 30px; font-weight: bold;">Порадуй себя вместе с нашими партнерами</span></p>
+                <p><span style="color: #000000; font-size: 20px">Магазин канцтоваров для учебы и творчества!</span></p>
                 <a href="" target="_blank" rel="noopener" class="button button--outlined labrada-regular">
-                    <span>Попробовать себя</span>
+                    <span>Посмотреть</span>
                 </a>
             </li>
+            <li>
+                <img src="{% static 'img/orig.png' %}" style="max-width: 80vw;">
+            </li>
         </ul>
-       <img src="{% static 'img/math1.png' %}" class="side-image" style="top:0; height: auto; z-index: -1; transform: translateY(-25%);">
+       <img src="{% static 'img/math1.png' %}"  id="lastimage" class="side-image" style="top:0; height: auto; z-index: -1; transform: translateY(-25%);">
   </div>
 </div>
 </main>

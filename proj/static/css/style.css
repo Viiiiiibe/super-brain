@@ -22,7 +22,12 @@ html {
 }
 
 body {
+    width: 100%;
+    height: auto;
     margin: 0;
+    min-height: 100%;
+    padding: 0;
+    min-width: 320px;
 }
 
 main {
@@ -155,7 +160,7 @@ a:hover,
 }
 
 .main-header{
-    padding:0 50px;
+    padding:0 4vw;
 
     position: relative;
     background-color: rgb(255, 255, 255);
@@ -199,7 +204,7 @@ a:hover,
 
 .kl-navbar__item {
   position: relative;
-  margin: 0 32px;
+  margin: 0 2.3vw;
 }
 
 .kl-navbar__item--active .kl-navbar__panel {
@@ -278,6 +283,10 @@ a:hover,
     height: 100%;
 }
 
+.main-text {
+     font-size: 60px;
+}
+
 .kl-footer {
   background-color: #25262C;
 }
@@ -305,12 +314,6 @@ color: rgba(255, 255, 255, 0.7);
   margin: -16px 0;
 }
 
-@media screen and (max-width: 680px) {
-  .kl-footer__menu {
-    margin: 16px -16px 0;
-  }
-}
-
 .kl-footer__menu ul {
   list-style: none;
   padding: 0;
@@ -333,7 +336,7 @@ color: rgba(255, 255, 255, 0.7);
 }
 
 .kl-footer__group {
-  margin: 16px 82px;
+  margin: 16px 6vw;
 }
 
 @media screen and (max-width: 680px) {
@@ -381,6 +384,7 @@ color: rgba(255, 255, 255, 0.7);
   padding: 0;
   margin-bottom: 35px;
   z-index:1;
+  text-align: center;
 }
 
 .first-block li {
@@ -412,6 +416,15 @@ color: rgba(255, 255, 255, 0.7);
     margin: 20px 0; /* Отступы сверху и снизу */
 }
 
+.third-block-container {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    margin: 0 auto;
+    max-width: 800px;
+    align-items: flex-end;
+}
+
 .third-block {
   list-style: none;
   display: flex;
@@ -425,9 +438,14 @@ color: rgba(255, 255, 255, 0.7);
 }
 
 .banner {
-  width: 700px;
+  width: 80vw;
   border: 6px solid black;
-  padding: 50px;
+  padding: 3vw;
+}
+
+.last-block {
+    flex-flow:column;
+    padding-bottom: 200px;
 }
 
 
@@ -466,6 +484,23 @@ color: rgba(255, 255, 255, 0.7);
   width: 150px;
   height: 150px;
   margin-right: 30px;
+}
+
+.course-task-block-elements {
+  list-style: none;
+  display: flex;
+  padding: 0;
+  margin-bottom: 35px;
+  align-items: center;
+}
+
+.course-task-block-elements li {
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  width: 150px;
+  margin: 15px 15px;
 }
 
 .account-course-news-elements {
@@ -617,12 +652,22 @@ textarea.form-input__field {
     align-items: center;
     width: 150px;
     height: 150px;
-    margin-right: 30px;
+    margin: 15px 15px;
     transition: background 1.5s ease;
 }
 
+.error, .success {
+    list-style: none;
+}
+
+.courses-container {
+    margin-left:200px;
+    max-width: 1200px;
+    min-height:100vh;
+}
+
 .tournament{
-    width: 800px;
+    max-width: 800px;
     margin: 0 auto;
 
     padding: 20px;
@@ -644,7 +689,7 @@ textarea.form-input__field {
   background: rgba(235, 235, 235, 1);
   border-radius: 15px;
   align-content: center;
-  width: 700px;
+  width: 45vw;
   height: 50px;
   margin-top: 7px;
 }
@@ -664,13 +709,21 @@ textarea.form-input__field {
 }
 
 .tournament-task {
+  justify-content: center;
   list-style: none;
   padding: 0;
   margin-bottom: 35px;
 }
 
 .tournament-task li {
+  margin-top: 5px;
   margin-right: 30px;
+}
+
+.date-container {
+    width:100%;
+    display: flex;
+    justify-content: end;
 }
 
 .tab {
@@ -704,4 +757,180 @@ textarea.form-input__field {
   border-color: #734D91;
   color: rgba(255, 255, 255, 1);
   transform: scale(1.05);
+}
+
+
+.kl-navbar__mobile-menu {
+    z-index: 211;
+    display: none;
+    position: fixed;
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    padding: 10px;
+}
+
+.kl-navbar__mobile-menu ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+
+/* Иконка бургера */
+.kl-navbar__burger {
+    display: none;
+    cursor: pointer;
+}
+
+.kl-navbar__burger-line {
+    width: 30px;
+    height: 4px;
+    background-color: #734D91;
+    margin: 6px 0;
+    display: block;
+}
+
+.kl-mobile__menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Адаптация под мобильные устройства */
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .main-text {
+        font-size: 40px;
+    }
+
+    .courses-container {
+        margin-left: 100px;
+    }
+
+    .account-course-block-elements {
+        li {
+            width: 130px;
+            height: 130px;
+        }
+    }
+
+    .kl-navbar__menu {
+        margin: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .kl-navbar__menu, .kl-navbar__end {
+        display: none;
+    }
+
+    .kl-navbar__item {
+        margin-top: 10px;
+    }
+
+    .kl-navbar__burger {
+        display: block;
+    }
+
+    .kl-navbar__content {
+        justify-content: end;
+    }
+
+    .kl-navbar__mobile-menu.open {
+        display: block;
+    }
+
+    .kl-footer__content {
+        justify-content: unset;
+    }
+    .kl-footer__menu {
+        flex-flow: column;
+    }
+
+    .kl-footer__group {
+            width:80%;
+    }
+
+    .side-image {
+        transform: none;
+    }
+
+    .first-block {
+        display: block;
+
+        li {
+            margin: 0;
+        }
+    }
+
+    .second-block {
+        flex-flow: column;
+        align-items: center;
+
+        li {
+            width: 75%;
+            height: auto;
+            margin: 10px 0;
+        }
+    }
+
+    .third-block-container {
+        flex-flow: column;
+        align-items: center;
+    }
+
+    .third-block {
+        flex-flow: column;
+        margin-bottom: 0;
+        align-items: center;
+        max-width: 90vw;
+        li {
+            margin: 10px 10px;
+        }
+    }
+
+    .last-block {
+        padding-bottom: 0;
+    }
+    #lastimage {
+        display: none;
+    }
+
+    .courses-container {
+        margin-left: 0px;
+        text-align: center;
+    }
+
+    .account-course-block-elements {
+        flex-flow: column;
+
+        li {
+            margin: 10px 0;
+        }
+    }
+
+    .course-task-block-elements {
+        flex-flow: column;
+        flex-wrap: unset;
+    }
+
+    .tournament-task {
+        flex-flow: column;
+
+        li {
+            margin: 10px 0px;
+        }
+    }
+
+    .date-container {
+        justify-content: center;
+    }
+
+    .tournament-member-list li {
+        width: 80vw;
+    }
+
+    .problem-theory {
+         margin: 0 auto;
+    }
 }

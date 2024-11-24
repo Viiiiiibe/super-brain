@@ -6,7 +6,7 @@
 {% block content %}
 {% load static %}
 <main>
-    <div style="margin-left:200px; max-width: 1200px; min-height:100vh;">
+    <div class="courses-container">
         <a href="{{ request.META.HTTP_REFERER }}" rel="noopener" class="button button--outlined labrada-regular" style="margin-top: 20px;">
             <span>Вернуться назад</span>
         </a>
@@ -18,7 +18,8 @@
 
         <!--ЕСЛИ ПОДПИСКА НЕ ДЕЙСТВУЕТ ЭЛЕМЕНТОВ В ЦИКЛЕ ПРОСТО НЕ БУДЕТ,
         ДЕЙСТВУЕТ - ВЫВОДИТ ЗАДАЧИ ИЗ КОНТЕКСТА-->
-        <ul class="account-course-block-elements lakki-reddy-regular" style="display: flex; max-width:800px;">
+        <div style="width:100%;">
+        <ul class="course-task-block-elements lakki-reddy-regular" style="display: flex; flex-wrap: wrap;">
         {% for problem in problems %}
             <li class="course-element">
                 <a href="{% url 'problem' problem.pk %}" rel="noopener" class="button button--outlined labrada-regular">
@@ -31,6 +32,7 @@
             </li>
         {% endfor %}
         </ul>
+        </div>
     </div>
 </main>
 {% endblock %}
