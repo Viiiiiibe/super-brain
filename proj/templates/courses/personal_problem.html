@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% block title %}
+Задача {{ problem_obj.number }}
+{% endblock %}
+
+{% block content %}
+{% load static %}
+<main>
+    <div class="courses-container">
+        <h1>Задача {{ problem_obj.number }}</h1>
+        <p>{{ problem_obj.text }}</p>
+        {% if problem_obj.theory %}
+            <h2>Теория</h2>
+        <div style="max-width: 80vw;" class="problem-theory">
+            <p>{{ problem_obj.theory }}</p>
+        </div>
+        {% endif %}
+
+        <form method="post">
+            {% csrf_token %}
+            <fieldset style="flex-wrap: wrap;
+    display: flex
+;
+    width: fit-content;
+justify-content: center;">
+                <legend>Выберите ответ:</legend>
+
+                <div>
+                    <input type="radio" id="answer1" name="answer" value="1" class="answer-radio">
+                    <label for="answer1" class="answer-label">
+                        {% if problem_obj.answer1_image %}
+                            <img src="{{ problem_obj.answer1_image.url }}" alt="Ответ 1" class="answer-image">
+                        {% endif %}
+                        <span class="labrada-regular" style="font-size: 20px;">{{ problem_obj.answer1_text }}</span>
+                    </label>
+                </div>
+
+                <div>
+                    <input type="radio" id="answer2" name="answer" value="2" class="answer-radio">
+                    <label for="answer2" class="answer-label">
+                        {% if problem_obj.answer2_image %}
+                            <img src="{{ problem_obj.answer2_image.url }}" alt="Ответ 2" class="answer-image">
+                        {% endif %}
+                        <span class="labrada-regular" style="font-size: 20px;">{{ problem_obj.answer2_text }}</span>
+                    </label>
+                </div>
+
+                {% if problem_obj.answer3_text %}
+                    <div>
+                        <input type="radio" id="answer3" name="answer" value="3" class="answer-radio">
+                        <label for="answer3" class="answer-label">
+                            {% if problem_obj.answer3_image %}
+                                <img src="{{ problem_obj.answer3_image.url }}" alt="Ответ 3" class="answer-image">
+                            {% endif %}
+                            <span class="labrada-regular" style="font-size: 20px;">{{ problem_obj.answer3_text }}</span>
+                        </label>
+                    </div>
+                {% endif %}
+
+                {% if problem_obj.answer4_text %}
+                    <div>
+                        <input type="radio" id="answer4" name="answer" value="4" class="answer-radio">
+                        <label for="answer4" class="answer-label">
+                            {% if problem_obj.answer4_image %}
+                                <img src="{{ problem_obj.answer4_image.url }}" alt="Ответ 4" class="answer-image">
+                            {% endif %}
+                            <span class="labrada-regular" style="font-size: 20px;">{{ problem_obj.answer4_text }}</span>
+                        </label>
+                    </div>
+                {% endif %}
+            </fieldset>
+
+            <button class="button button--outlined labrada-regular" style="margin-top: 15px;" type="submit">Отправить ответ</button>
+        </form>
+
+        <!-- Вывод сообщений об успехе или ошибке -->
+        {% if messages %}
+            <ul style="padding: 0">
+                {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        {% if next_problem_id %}
+            <a class="button button--outlined labrada-regular" href="{% url 'personal_problem' next_problem_id %}" style="margin: 15px 0;">
+                <span>Следующая задача</span>
+            </a>
+        {% else %}
+                <a class="button button--outlined labrada-regular" href="{% url 'personal_course' problem_obj.course.slug %}" style="margin: 15px 0;">
+                    <span>На страницу курса</span>
+                </a>
+        {% endif %}
+    </div>
+</main>
+{% endblock %}

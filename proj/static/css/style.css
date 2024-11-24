@@ -377,6 +377,39 @@ color: rgba(255, 255, 255, 0.7);
   align-items: center;
 }
 
+.about-block {
+  list-style: none;
+  align-items:center;
+  display: flex;
+  padding: 0;
+  margin-bottom: 35px;
+  z-index:1;
+  text-align: center;
+}
+
+.about-block li {
+  margin-left: 40px;
+}
+
+.about-left {
+    max-height: 500px;
+    margin-left:7vw;
+    overflow: hidden;
+    display: flex;
+}
+
+.about-right {
+    max-height: 500px;
+    margin-right:7vw;
+    overflow: hidden;
+    display: flex;
+}
+
+.bold-about {
+    font-weight: bold;
+    font-size: 60px;
+}
+
 .first-block {
   list-style: none;
   align-items:center;
@@ -457,8 +490,7 @@ color: rgba(255, 255, 255, 0.7);
 }
 
 .account-main li {
-  margin-left: 15px;
-  margin-right: 15px;
+  margin: 10px 10px;
 }
 
 .account-course-text-elements {
@@ -515,13 +547,27 @@ color: rgba(255, 255, 255, 0.7);
   border-radius: 20px;
   text-align: start;
   align-content: end;
-  width: 600px;
-  height: 130px;
+  width: 30vw;
+  min-width: 200px;
   margin-top:30px;
 }
 
 .account-course-news-elements li p {
   margin-left: 15px;
+}
+
+.account-news-block{
+    margin-left: 70px;
+}
+
+.news-header {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.news-text {
+    color: #000000;
+    font-size: 20px
 }
 
 .auth-container {
@@ -666,6 +712,17 @@ textarea.form-input__field {
     min-height:100vh;
 }
 
+.account-container {
+    width: 80vw;
+    margin: 0 auto;
+    max-width: 1200px;
+    min-height:100vh;
+}
+
+.account-data-container {
+    display: flex;
+}
+
 .tournament{
     max-width: 800px;
     margin: 0 auto;
@@ -729,6 +786,11 @@ textarea.form-input__field {
 .tab {
     overflow: hidden;
     border-right: 1px solid #ccc;
+
+    display: flex;
+    flex-flow: column;
+    width: 17%;
+    text-align: center;
 }
 
 .tab button.active {
@@ -759,6 +821,13 @@ textarea.form-input__field {
   transform: scale(1.05);
 }
 
+.signup-header {
+     font-size: 45px;
+}
+
+.order-header {
+     font-size: 40px;
+}
 
 .kl-navbar__mobile-menu {
     z-index: 211;
@@ -796,8 +865,30 @@ textarea.form-input__field {
   padding: 0;
 }
 
-/* Адаптация под мобильные устройства */
+.faq-container {
+    margin:50px auto;
+    min-height:100vh;
+    display: flex;
+    max-width: 60vw;
+    background-color:rgba(240, 240, 240, 1);
+    border-radius: 50px;
+}
 
+.faq-text-container {
+    width: 85%;
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.faq-hr {
+    width: 70%;
+}
+
+/* Адаптация под мобильные устройства */
+@media (max-width: 1440px) {
+    .tab {
+        width:30%;
+    }
+}
 @media (min-width: 768px) and (max-width: 1024px) {
     .main-text {
         font-size: 40px;
@@ -816,6 +907,69 @@ textarea.form-input__field {
 
     .kl-navbar__menu {
         margin: 0;
+    }
+}
+
+@media (max-width: 940px) {
+    .account-data-container {
+        flex-flow: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .account-main-info {
+        flex-flow: column;
+    }
+
+    .account-news-block {
+        margin: 0;
+    }
+
+    #lastimageacc {
+        display: none;
+    }
+
+
+    .news-header {
+        font-size: 20px;
+    }
+
+    .news-text {
+        font-size: 13px;
+    }
+
+    .arrow-img {
+        width: 35px;
+    }
+
+
+    .faq-container {
+        flex-flow: column;
+    }
+
+    .tab {
+        border-right: unset;
+        width: auto;
+    }
+
+    .faq-hr {
+        width: 100%
+    }
+    .tablinks {
+        margin: 8px 0;
+    }
+
+    .faq-container {
+        max-width: 80vw;
+    }
+
+    .faq-text-container {
+        width: 100%;
+        text-align: center;
+    }
+
+    .bold-about {
+        font-size: 40px;
     }
 }
 
@@ -932,5 +1086,38 @@ textarea.form-input__field {
 
     .problem-theory {
          margin: 0 auto;
+    }
+
+    .account-main {
+        flex-flow: column;
+    }
+
+    .account-main-info {
+        align-items: center;
+        text-align: center;
+    }
+
+    .signup-header {
+        font-size: 35px;
+    }
+
+    .order-header {
+        font-size: 30px;
+    }
+}
+
+@media (max-width: 570px) {
+    .about-block {
+        flex-flow: column;
+
+        li {
+            margin-left: 0;
+            margin-right: 0;
+        }
+    }
+
+
+    .bold-about {
+        font-size: 30px;
     }
 }

@@ -7,17 +7,17 @@
 {% load static %}
 
 <main>
-<div style="margin-left:200px; max-width: 1200px; margin: 0 auto;">
-    <div style="display: flex; justify-content: space-between; margin-top: 20px;">
-        <ul class="account-main lakki-reddy-regular" style="max-width:800px;">
+<div class="account-container">
+    <div class="account-main-info" style="display: flex; justify-content: space-between; margin-top: 20px;">
+        <ul class="account-main lakki-reddy-regular" style="max-width:800px; align-items: center">
             <li>
-                <img src="{% static 'img/avatar.png' %}">
+                <img src="{% static 'img/avatar.png' %}" style="width: 10vw; min-width: 120px;">
             </li>
             <li>
-                <p><span class="labrada-regular" style="font-size: 30px; font-weight: bold;">Никнейм</span></p>
-                <p><span class="labrada-regular" style="color: #000000; font-size: 20px">Место в рейтинге: ???</span></p>
-                <a href="{% url 'all_courses' %}" rel="noopener" class="button button--outlined">
-                    <span>Подобрать курс</span>
+                <p><span class="labrada-regular" style="font-size: 30px; font-weight: bold;">{{user}}</span></p>
+                <p><span class="labrada-regular" style="color: #000000; font-size: 20px">Место в рейтинге: {{user_position_in_top}}</span></p>
+                <a href="{% url 'account:order' %}" rel="noopener" class="button button--outlined">
+                    <span>Услуги</span>
                 </a>
             </li>
         </ul>
@@ -28,114 +28,88 @@
                 </a>
             </li>
             <li>
-                <a href="" rel="noopener" class="button button--outlined labrada-regular">
-                    <span>Выйти</span>
-                </a>
+                <form id="logout-form" action="{% url 'logout' %}" method="POST">
+                    {% csrf_token %}
+                    <button id="form-submit-link2" class="button button--outlined labrada-regular" type="submit">Выйти</button>
+                </form>
             </li>
         </ul>
     </div>
-    <div style="display: flex;">
+    <div class="account-data-container">
         <div>
         <p><span class="labrada-regular" style="font-size: 30px; font-weight: bold;">Личные курсы</span></p>
         <ul class="account-course-block-elements lakki-reddy-regular" style="max-width:800px;">
-            <li style="background: linear-gradient(90deg, #91DDF7 0%, #558191 100%);">
-                <p><span class="labrada-regular account-course-text-elements" style="color: #000000; font-size: 20px;">Русский</span></p>
+            {% for course in personal_courses_list %}
+            <li class="course-element" style="background-image: url({{ course.image.url }}); background-size: 100% 100%; cursor:pointer;" onclick="location.href='{% url 'personal_course' course.slug %}'">
+                <p><span class="labrada-regular account-course-text-elements" style="color: #000000; font-size: 20px;">{{ course.title }}</span></p>
             </li>
-            <li style="background: linear-gradient(90deg, #F79191 0%, #EA8989 12.5%, #915555 100%);">
-                <p><span class="labrada-regular account-course-text-elements" style="color: #000000; font-size: 20px;">Математика</span></p>
-            </li>
-            <li style="background: linear-gradient(90deg, #B0C8F7 0%, #677591 100%);">
-                <p><span class="labrada-regular account-course-text-elements" style="color: #000000; font-size: 20px;">Логика</span></p>
-            </li>
+            {% endfor %}
+            {% if personal_courses_list %}
             <li style="background: rgba(246, 246, 246, 1); width:auto; height:50px; align-items: unset;">
                 <a href="{% url 'personal_courses' %}" rel="noopener">
                     <img src="{% static 'img/Arrow right.png' %}">
                 </a>
             </li>
+            {% endif %}
         </ul>
 
         <p><span class="labrada-regular" style="font-size: 30px; font-weight: bold;">Текущие курсы</span></p>
         <ul class="account-course-block-elements lakki-reddy-regular" style="max-width:800px;">
-            <li style="background: linear-gradient(90deg, #91DDF7 0%, #558191 100%);">
-                <p><span class="labrada-regular account-course-text-elements" style="color: #000000; font-size: 20px;">Русский</span></p>
+            {% for course in current_courses_list %}
+            <li class="course-element" style="background-image: url({{ course.image.url }}); background-size: 100% 100%; cursor:pointer;" onclick="location.href='{% url 'course' course.slug %}'">
+                <p><span class="labrada-regular account-course-text-elements" style="color: #000000; font-size: 20px;">{{ course.title }}</span></p>
             </li>
-            <li style="background: linear-gradient(90deg, #F79191 0%, #EA8989 12.5%, #915555 100%);">
-                <p><span class="labrada-regular account-course-text-elements" style="color: #000000; font-size: 20px;">Математика</span></p>
-            </li>
-            <li style="background: linear-gradient(90deg, #B0C8F7 0%, #677591 100%);">
-                <p><span class="labrada-regular account-course-text-elements" style="color: #000000; font-size: 20px;">Логика</span></p>
-            </li>
+            {% endfor %}
+            {% if current_courses_list %}
             <li style="background: rgba(246, 246, 246, 1); width:auto; height:50px; align-items: unset;">
                 <a href="{% url 'current_courses' %}" rel="noopener">
                     <img src="{% static 'img/Arrow right.png' %}">
                 </a>
             </li>
+            {% endif %}
         </ul>
 
         <p><span class="labrada-regular" style="font-size: 30px; font-weight: bold;">Пройденые курсы</span></p>
         <ul class="account-course-block-elements lakki-reddy-regular" style="max-width:800px;">
-            <li style="background: linear-gradient(90deg, #91DDF7 0%, #558191 100%);">
-                <p><span class="labrada-regular account-course-text-elements" style="color: #000000; font-size: 20px;">Русский</span></p>
+            {% for course in completed_courses_list %}
+            <li class="course-element" style="background-image: url({{ course.image.url }}); background-size: 100% 100%; cursor:pointer;" {% if course.user %}
+            onclick="location.href='{% url 'personal_course' course.slug %}'"
+            {% else %}
+            onclick="location.href='{% url 'course' course.slug %}'"
+            {% endif %}>
+                <p><span class="labrada-regular account-course-text-elements" style="color: #000000; font-size: 20px;">{{ course.title }}</span></p>
             </li>
-            <li style="background: linear-gradient(90deg, #F79191 0%, #EA8989 12.5%, #915555 100%);">
-                <p><span class="labrada-regular account-course-text-elements" style="color: #000000; font-size: 20px;">Математика</span></p>
-            </li>
-            <li style="background: linear-gradient(90deg, #B0C8F7 0%, #677591 100%);">
-                <p><span class="labrada-regular account-course-text-elements" style="color: #000000; font-size: 20px;">Логика</span></p>
-            </li>
+            {% endfor %}
+            {% if completed_courses_list %}
             <li style="background: rgba(246, 246, 246, 1); width:auto; height:50px; align-items: unset;">
                 <a href="{% url 'completed_courses' %}" rel="noopener">
                     <img src="{% static 'img/Arrow right.png' %}">
                 </a>
             </li>
+            {% endif %}
         </ul>
         </div>
-        <div style="margin-left: 70px;">
+        <div class="account-news-block">
             <p><span class="labrada-regular" style="font-size: 30px; font-weight: bold;">Новости</span></p>
         <ul class="account-course-news-elements lakki-reddy-regular" style="max-width:800px;">
+            {% for news in news_list%}
             <li>
                 <div class="account-course-text-elements" style="padding: 0; display: flex;
     align-items: center;
-    justify-content: space-between;">
-                    <div>
-                        <p><span class="labrada-regular" style="font-size: 30px; font-weight: bold;">Новый турнир!</span></p>
-                        <p><span class="labrada-regular" style="color: #000000; font-size: 20px">С ХХ.ХХ по ХХ.ХХ будет проходить турнир...</span></p>
+    justify-content: space-between; margin-top: 15px;">
+                    <div style="overflow-x:hidden;">
+                         <a href="" rel="noopener" style="color: black;">
+                            <p><span class="news-header labrada-regular"> {{news.title}} ({{news.pub_date|date:"d.m.Y"}})</span></p>
+                         </a>
+                        <p><span class="news-text labrada-regular">{{news.text}}</span></p>
                     </div>
-                    <a href="" rel="noopener" style="margin-right: 15px; box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); border-radius: 20px; display: flex;">
-                        <img src="{% static 'img/Arrow right.png' %}">
-                    </a>
                 </div>
             </li>
-            <li>
-                <div class="account-course-text-elements" style="padding: 0; display: flex;
-    align-items: center;
-    justify-content: space-between;">
-                    <div>
-                        <p><span class="labrada-regular" style="font-size: 30px; font-weight: bold;">Новый турнир!</span></p>
-                        <p><span class="labrada-regular" style="color: #000000; font-size: 20px">С ХХ.ХХ по ХХ.ХХ будет проходить турнир...</span></p>
-                    </div>
-                    <a href="" rel="noopener" style="margin-right: 15px; box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); border-radius: 20px; display: flex;">
-                        <img src="{% static 'img/Arrow right.png' %}">
-                    </a>
-                </div>
-            </li>
-            <li >
-                <div class="account-course-text-elements" style="padding: 0; display: flex;
-    align-items: center;
-    justify-content: space-between;">
-                    <div>
-                        <p><span class="labrada-regular" style="font-size: 30px; font-weight: bold;">Новый турнир!</span></p>
-                        <p><span class="labrada-regular" style="color: #000000; font-size: 20px">С ХХ.ХХ по ХХ.ХХ будет проходить турнир...</span></p>
-                    </div>
-                    <a href="" rel="noopener" style="margin-right: 15px; box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); border-radius: 20px; display: flex;">
-                        <img src="{% static 'img/Arrow right.png' %}">
-                    </a>
-                </div>
-            </li>
+            {% endfor %}
         </ul>
         </div>
     </div>
-    <img src="{% static 'img/bg-account.png' %}" class="side-image" style="top:35%; height: auto; z-index: -1; transform: unset;">
+    <img src="{% static 'img/bg-account.png' %}" class="side-image" id="lastimageacc" style="top:35%; height: auto; z-index: -1; transform: unset;">
 </div>
 </main>
 
