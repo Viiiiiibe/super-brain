@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}
+Курс | {{ course.title }}
+{% endblock %}
+
+{% block content %}
+{% load static %}
+<main>
+    <div class="courses-container">
+        <a href="{{ request.META.HTTP_REFERER }}" rel="noopener" class="button button--outlined labrada-regular" style="margin-top: 20px;">
+            <span>Вернуться назад</span>
+        </a>
+        <h1>Курс: {{ course.title }}</h1>
+
+        <div style="width:100%;">
+        <ul class="course-task-block-elements lakki-reddy-regular" style="display: flex; flex-wrap: wrap;">
+        {% for problem in problems %}
+            <li class="course-element">
+                <a href="{% url 'personal_problem' problem.pk %}" rel="noopener" class="button button--outlined labrada-regular">
+                <p>
+                    <span>
+                        Задача №{{ problem.number }}
+                    </span>
+                </p>
+                </a>
+            </li>
+        {% endfor %}
+        </ul>
+        </div>
+    </div>
+</main>
+{% endblock %}
