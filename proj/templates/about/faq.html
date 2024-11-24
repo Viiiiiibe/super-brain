@@ -6,13 +6,13 @@
 {% block content %}
 {% load static %}
 <main>
-    <div class="labrada-regular" style="margin-left:400px; margin-top: 30px; margin-bottom: 30px; min-height:100vh; display: flex; width: 1100px; background-color:rgba(240, 240, 240, 1); border-radius: 50px;">
-      <div class="tab" style="display: flex; flex-flow: column; width: 17%;  text-align: center;">
-        <a class="tablinks" onclick="openCity(event, 'First')" style="color: black; text-decoration: none;  margin-top: 15px;">Связь с нами <hr style="width: 70%;"></a>
-        <a class="tablinks" onclick="openCity(event, 'Second')" style="color: black; text-decoration: none;">Регистрация и вход <hr style="width: 70%;"></a>
-        <a class="tablinks" onclick="openCity(event, 'Third')" style="color: black; text-decoration: none;">Образовательные материалы <hr style="width: 70%;"></a>
+    <div class="labrada-regular faq-container">
+      <div class="tab">
+        <a class="tablinks" onclick="openCity(event, 'First')" style="color: black; text-decoration: none;  margin-top: 15px;">Связь с нами <hr class="faq-hr"></a>
+        <a class="tablinks" onclick="openCity(event, 'Second')" style="color: black; text-decoration: none;">Регистрация и вход <hr class="faq-hr"></a>
+        <a class="tablinks" onclick="openCity(event, 'Third')" style="color: black; text-decoration: none;">Образовательные материалы <hr class="faq-hr"></a>
       </div>
-      <div style="width: 85%; color: rgba(0, 0, 0, 0.8);">
+      <div class="faq-text-container">
         <div id="First" class="tabcontent" style="display: block;">
           <h2>Связь с нами</h2>
           <h3>Telegram и WhatsApp</h3>
