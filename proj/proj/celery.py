@@ -19,6 +19,10 @@ app.conf.beat_schedule = {
         'task': 'courses.tasks.send_emails_after_tournament',  # путь к задаче
         'schedule': crontab(hour=0, minute=0),  # Ежедневно в полночь
     },
+    'clearing-the-tournament-top-of-users-daily': {
+        'task': 'courses.tasks.clearing_the_tournament_top_of_users',  # путь к задаче
+        'schedule': crontab(hour=5, minute=0),  # Ежедневно в 5
+    },
 }
 
 # Load task modules from all registered Django apps.

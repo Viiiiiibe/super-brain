@@ -8,6 +8,7 @@ from promocodes.models import PromoCode
 from .models import Tournament
 from django.utils.timezone import now
 import uuid  # Для генерации уникального кода
+from account.models import CustomUser
 
 
 @shared_task
@@ -68,3 +69,18 @@ def send_emails_after_tournament():
                         recipient_list=[user.email],
                         fail_silently=False,
                     )
+
+
+@shared_task
+def clearing_the_tournament_top_of_users():
+    today = now().date()
+    try:
+        tournament_obj = Tournament.objects.filter(start_date=today).first()
+    except:
+        tournament_obj = None
+
+    if tournament_obj:
+        all_users_list = CustomUser.objects.all()
+        for user in all_users_list:
+            user.tournament_points = 0
+            user.save()
