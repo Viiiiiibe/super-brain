@@ -35,6 +35,10 @@ docker compose run --rm web python manage.py migrate
 ```console  
 docker compose up
 ```
+- Для отображения статических файлов через nginx при DEBUG = False
+```console  
+docker-compose exec web python manage.py collectstatic --no-input 
+```
 
 ### Запуск без Docker
 - Рядом с файлом manage.py разместить .env файл.
@@ -57,6 +61,10 @@ python manage.py migrate  --settings=proj.settings_without_docker
 - В папке с файлом manage.py выполнить команду для запуска локального сервера:
 ```console  
 python manage.py runserver  --settings=proj.settings_without_docker
+```
+- Для отображения статических файлов при DEBUG = False
+```console  
+python manage.py collectstatic --no-input  --settings=proj.settings_without_docker
 ```
 
 Сайт отобразится по адресу http://127.0.0.1:8000/
