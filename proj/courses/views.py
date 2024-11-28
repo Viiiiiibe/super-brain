@@ -52,6 +52,7 @@ def all_courses(request):
     context = {
         'categories_with_courses': categories_with_courses,
         'current_courses': current_courses_list,
+        'current_date': date.today(),
     }
     return render(request, 'courses/all_courses.html', context)
 

@@ -25,12 +25,18 @@
             <h2>{{ item.category.title }}</h2>
             <ul class="account-course-block-elements lakki-reddy-regular" style="max-width:800px;">
                 {% for course in item.courses %}
+                    {% if course.free or current_date <= request.user.end_of_subscription %}
                     <li class="course-element" style="background-image: url({{ course.image.url }}); background-size: 100% 100%; cursor:pointer;" onclick="location.href='{% url 'course' course.slug %}'">
                         <p><span class="labrada-regular account-course-text-elements" style="color: #000000; font-size: 20px;">{{ course.title }}</span></p>
                     </li>
+                    {% else %}
+                    <li class="course-element" style="background-image: url({{ course.image.url }}); background-size: 100% 100%; opacity: 0.5;">
+                        <p><span class="labrada-regular account-course-text-elements" style="color: #000000; font-size: 20px;">{{ course.title }}</span></p>
+                    </li>
+                    {% endif %}
                 {% endfor %}
                 <li style="background: rgba(246, 246, 246, 1); width:auto; height:50px; align-items: unset;">
-                    <a href="{% url 'all_courses' item.category.slug %}" rel="noopener">
+                    <a href="{% url 'category_courses' item.category.slug %}" rel="noopener">
                         <img src="{% static 'img/Arrow right.png' %}">
                     </a>
                 </li>
