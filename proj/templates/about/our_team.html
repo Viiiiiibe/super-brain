@@ -7,7 +7,7 @@
 {% load static %}
 <main>
  <div>
-     <div style="display: flex; justify-content: center; text-align: center; max-height: 500px;">
+     <div class="about-container">
         <ul class="about-block labrada-regular" style="margin: 0;">
             <li>
                 <h1><span class="bold-about" style="color: #734D91;">Мы - команда <br> Super Brain</span></h1>
@@ -17,65 +17,36 @@
             </li>
         </ul>
      </div>
-     <div style="display: flex; justify-content: center; text-align: center; background: rgba(141, 88, 161, 1); max-height: 500px;">
+     <div class="about-container">
         <ul class="about-block labrada-regular" style="margin: 0;">
-            <li class="about-right">
-                <img src="{% static 'img/fofilov.png' %}" style="max-width: 30vw; max-height: 500px;">
+            <li style="background: rgba(141, 88, 161, 1); padding: 15px; border-radius: 25px; min-width: 210px;">
+                <img src="{% static 'img/fofilov.png' %}" style="max-height: 180px;">
+                <p style="color: white; font-size: 20px;">Никита<br>Фофилов</p>
             </li>
-            <li style="color: white;">
-                <h1><span class="bold-about">Руководитель</span></h1>
-                <p>Никита Фофилов</p>
-                <p>Текст</p>
+            <li style="background: rgba(141, 88, 161, 1); padding: 15px; border-radius: 25px; min-width: 210px;">
+                <img src="{% static 'img/ivanov.png' %}" style="max-height: 180px;">
+                <p style="color: white; font-size: 20px;">Дмитрий<br>Иванов</p>
+            </li>
+            <li style="background: rgba(141, 88, 161, 1); padding: 15px; border-radius: 25px; min-width: 210px;">
+                <img src="{% static 'img/yurchenko.png' %}" style="max-height: 180px;">
+                <p style="color: white; font-size: 20px;">Игорь<br>Юрченко</p>
+            </li>
+            <li style="background: rgba(141, 88, 161, 1); padding: 15px; border-radius: 25px; min-width: 210px;">
+                <img src="{% static 'img/podgorny.png' %}" style="max-height: 180px;">
+                <p style="color: white; font-size: 20px;">Максим<br>Подгорный</p>
+            </li>
+            <li style="background: rgba(141, 88, 161, 1); padding: 15px; border-radius: 25px; min-width: 210px;">
+                <img src="{% static 'img/kibalnikov.png' %}" style="max-height: 180px;">
+                <p style="color: white; font-size: 20px;">Сергей<br>Кибальников</p>
             </li>
         </ul>
      </div>
-     <div style="display: flex; justify-content: center; text-align: center; max-height: 500px;">
-        <ul class="about-block labrada-regular" style="margin: 0;">
-            <li style="color: rgba(115, 77, 145, 1);">
-                <h1><span class="bold-about">Аналитик</span></h1>
-                <p>Дмитрий Иванов</p>
-                <p>Текст</p>
-            </li>
-            <li class="about-left">
-                <img src="{% static 'img/ivanov.png' %}" style="max-width: 30vw; max-height: 500px;">
-            </li>
-        </ul>
-     </div>
-     <div style="display: flex; justify-content: center; text-align: center; background: rgba(141, 88, 161, 1); max-height: 500px;">
-        <ul class="about-block labrada-regular" style="margin: 0;">
-            <li class="about-right">
-                <img src="{% static 'img/kibalnikov.png' %}" style="max-width: 30vw; max-height: 500px;">
-            </li>
-            <li style="color: white;">
-                <h1><span class="bold-about">Дизайнер</span></h1>
-                <p>Сергей Кибальников</p>
-                <p>Текст</p>
-            </li>
-        </ul>
-     </div>
-     <div style="display: flex; justify-content: center; text-align: center; max-height: 500px;">
-        <ul class="about-block labrada-regular" style="margin: 0;">
-            <li style="color: rgba(115, 77, 145, 1);">
-                <h1><span class="bold-about">Разработчик</span></h1>
-                <p>Максим Подгорный</p>
-                <p>Текст</p>
-            </li>
-            <li class="about-left">
-                <img src="{% static 'img/podgorny.png' %}" style="max-width: 30vw; max-height: 500px;">
-            </li>
-        </ul>
-     </div>
-     <div style="display: flex; justify-content: center; text-align: center; background: rgba(141, 88, 161, 1); max-height: 500px;">
-        <ul class="about-block labrada-regular" style="margin: 0;">
-            <li class="about-right">
-                <img src="{% static 'img/yurchenko.png' %}" style="max-width: 30vw; max-height: 500px;">
-            </li>
-            <li style="color: white;">
-                <h1><span class="bold-about">Копирайтер</span></h1>
-                <p>Игорь Юрченко</p>
-                <p>Текст</p>
-            </li>
-        </ul>
+     <div style="text-align: center; max-width: 50vw; margin: 70px auto;">
+         <h3 class="labrada-regular" style="color: #734D91; font-size: 60px; margin: 30px auto;">Играй и учись!</h3>
+         <p class="labrada-regular" style="color: #734D91; font-size: 25px;">Мы превращаем обучение в игру, где дети открывают
+            новые знания, развивая любопытство и таланты.
+            Учиться с нами – это весело и увлекательно!
+         </p>
      </div>
  </div>
 </main>
