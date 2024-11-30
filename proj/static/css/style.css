@@ -388,21 +388,14 @@ color: rgba(255, 255, 255, 0.7);
 }
 
 .about-block li {
-  margin-left: 40px;
+  margin-left: 20px;
 }
 
-.about-left {
-    max-height: 500px;
-    margin-left:7vw;
-    overflow: hidden;
+.about-container {
     display: flex;
-}
-
-.about-right {
+    justify-content: center;
+    text-align: center;
     max-height: 500px;
-    margin-right:7vw;
-    overflow: hidden;
-    display: flex;
 }
 
 .bold-about {
@@ -908,6 +901,18 @@ textarea.form-input__field {
     .kl-navbar__menu {
         margin: 0;
     }
+
+    .about-block {
+        flex-flow: column;
+
+        li {
+            margin: 10px 0;
+        }
+    }
+
+    .about-container {
+        max-height: unset;
+    }
 }
 
 @media (max-width: 940px) {
@@ -1111,9 +1116,12 @@ textarea.form-input__field {
         flex-flow: column;
 
         li {
-            margin-left: 0;
-            margin-right: 0;
+            margin: 10px 0;
         }
+    }
+
+    .about-container {
+        max-height: unset;
     }
 
 
